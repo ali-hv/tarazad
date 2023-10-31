@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html dir="rtl" lang="en-US">
 
@@ -10,7 +12,7 @@
     <meta name="author" content="zytheme" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="Multi-purpose Makerting html5 landing page">
-    <link href="assets/images/favicon/favicon.ico" rel="icon">
+    <link href="{% static 'home/images/favicon/favicon.ico' %}" rel="icon">
 
     <!-- Fonts
     ============================================= -->
@@ -18,8 +20,8 @@
 
     <!-- Stylesheets
     ============================================= -->
-    <link href="assets/css/external.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="{% static 'home/css/external.css' %}" rel="stylesheet">
+    <link href="{% static 'home/css/style.css' %}" rel="stylesheet">
 
     <!-- Document Title
     ============================================= -->
@@ -36,7 +38,7 @@
             <nav id="primary-menu" class="navbar navbar-expand-lg navbar-dark">
                 <div class="container">
                     <a class="navbar-brand" href="index.html">
-                        <img class="logo logo-dark" src="assets/images/logo/logo.png" alt="Logo" style="max-width: 80px; max-height: 80px;">
+                        <img class="logo logo-dark" src="{% static 'home/images/logo/logo.png' %}" alt="Logo" style="max-width: 80px; max-height: 80px;">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
                         aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +85,7 @@
                             <span class="video-button">
                                 <a class="popup-video" href="https://www.youtube.com/watch?v=test">
                                     <span class="player-text">معرفی</span>
-                                    <span class="btn-player"><img src="assets/images/video/player.svg"
+                                    <span class="btn-player"><img src="{% static 'home/images/video/player.svg' %}"
                                             alt="video player"></span>
                                 </a>
                             </span>
@@ -91,7 +93,7 @@
                     </div>
                     <div class="col-12 col-md-12 col-lg-6">
                         <div class="hero-img">
-                            <img class="img-fluid" src="assets/images/hero/hero.png" alt="background">
+                            <img class="img-fluid" src="{% static 'home/images/hero/hero.png' %}" alt="background">
                         </div>
                     </div>
                 </div>
@@ -110,7 +112,7 @@
                     <div class="row">
                         <div class="col-12 col-md-12 col-lg-4">
                             <div class="footer-logo">
-                                <img src="assets/images/logo/logo.png" alt="Logo"  style="max-width: 80px; max-height: 80px;">
+                                <img src="{% static 'home/images/logo/logo.png' %}" alt="Logo"  style="max-width: 80px; max-height: 80px;">
                             </div>
                         </div>
                         <div class="col-12 col-md-12 col-lg-8">
@@ -159,9 +161,9 @@
 
     <!-- Footer Scripts
 	============================================= -->
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/functions.js"></script>
+    <script src="{% static 'home/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'home/js/plugins.js' %}"></script>
+    <script src="{% static 'home/js/functions.js' %}"></script>
     <script src="https://kit.fontawesome.com/ade0b34805.js" crossorigin="anonymous"></script>
 </body>
 
