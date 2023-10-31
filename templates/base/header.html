@@ -12,7 +12,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="active"><a data-scroll="scrollTo" href="#hero">خانه</a>
+                    <li class="active"><a data-scroll="scrollTo" href="{% url 'home:home_page' %}">خانه</a>
                     </li>
                     <li><a data-scroll="scrollTo" href="#">کتاب ها</a>
                     </li>
@@ -22,9 +22,9 @@
                     </li>
                     <li><a data-scroll="scrollTo" href="#">حمایت</a>
                     </li>
-                    <li><a data-scroll="scrollTo" href="#">درباره ما</a>
+                    <li><a data-scroll="scrollTo" href="{% url 'home:about_us' %}">درباره ما</a>
                     </li>
-                    <li><a data-scroll="scrollTo" href="#">تماس با ما</a>
+                    <li><a data-scroll="scrollTo" href="{% url 'home:contact_us' %}">تماس با ما</a>
                     </li>
                     <li></li>
                     <li>
