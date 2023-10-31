@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="44px" viewBox="0 0 50 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#885BFE" offset="0%"></stop>
+            <stop stop-color="#664FFA" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Siena" transform="translate(-935.000000, -3385.000000)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <g id="Testimonials" transform="translate(0.000000, 3265.000000)">
+                <g id="Icon" transform="translate(935.000000, 120.000000)">
+                    <path d="M9.59141731,0 C4.29406549,0 0,4.41840721 0,9.86839013 C0,15.3190309 4.29406549,19.7367803 9.59141731,19.7367803 C19.1821767,19.7367803 12.7881178,38.8156678 0,38.8156678 L0,43.4209166 C22.8222969,43.4209166 31.7670057,0 9.59141731,0 Z M37.2229097,0 C31.9255579,0 27.6314924,4.41840721 27.6314924,9.86839013 C27.6314924,15.3190309 31.9255579,19.7367803 37.2229097,19.7367803 C46.8136691,19.7367803 40.4196102,38.8156678 27.6314924,38.8156678 L27.6314924,43.4209166 C50.4537893,43.4209166 59.3984981,0 37.2229097,0 Z" id="Shape" transform="translate(24.999726, 21.710458) rotate(-180.000000) translate(-24.999726, -21.710458) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
