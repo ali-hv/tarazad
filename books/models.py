@@ -1,10 +1,11 @@
 from django.db import models
+from core.models import TimeStampedModel
 from core.settings import AUTH_USER_MODEL
 
 User = AUTH_USER_MODEL
 
 
-class Book(models.Model):
+class Book(TimeStampedModel):
     LANGUAGES = (
         ('en-us', 'English'),
         ('es-sp', 'Spanish'),
