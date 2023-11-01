@@ -23,7 +23,7 @@ class Book(TimeStampedModel):
     author = models.CharField(max_length=255, verbose_name="Book's Author")
     language = models.CharField(max_length=5, choices=LANGUAGES, verbose_name="Book's Language")
     pages_number = models.PositiveIntegerField(verbose_name="Book's Pages Number")
-    publication_date = models.DateTimeField(verbose_name="Publication Date")
+    publication_date = models.IntegerField(verbose_name="Publication Date")
     translated_date = models.DateTimeField(blank=True, verbose_name="Translated Date")
     min_translators = models.PositiveIntegerField(verbose_name="Minimum Number of Translators to Start")
     status = models.CharField(max_length=11, choices=STATUS, verbose_name="Book's Status")
