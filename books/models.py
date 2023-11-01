@@ -27,5 +27,5 @@ class Book(TimeStampedModel):
     translated_date = models.DateTimeField(blank=True, verbose_name="Translated Date")
     min_translators = models.PositiveIntegerField(verbose_name="Minimum Number of Translators to Start")
     status = models.CharField(max_length=11, choices=STATUS, verbose_name="Book's Status")
-    translators = models.ManyToManyField(User, verbose_name="Book's Translators", related_name="book_translators")
+    translators = models.ManyToManyField(User, blank=True, verbose_name="Book's Translators", related_name="book_translators")
 
