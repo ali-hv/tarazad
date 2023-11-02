@@ -1,5 +1,5 @@
 from django.contrib import admin
-from books.models import Book, InProgressBook
+from books.models import Book, InProgressBook, Page
 
 
 @admin.register(Book)
@@ -11,3 +11,7 @@ class BookAdmin(admin.ModelAdmin):
 class InProgressBookAdmin(admin.ModelAdmin):
     list_display = ['book', 'pages_left', ]
 
+
+@admin.register(Page)
+class PageAdmin(admin.ModelAdmin):
+    list_display = ['book', 'translator', ]
