@@ -60,5 +60,6 @@ class Page(models.Model):
     page = models.PositiveIntegerField()
     original_content = models.TextField(verbose_name="Original Content")
     translated_content = models.TextField(blank=True, null=True, verbose_name="Translated Content")
+    is_translated = models.BooleanField(default=False)
     translator = models.ForeignKey(User, on_delete=models.PROTECT, related_name="page_translator",
                                    verbose_name="Page's Translator")
