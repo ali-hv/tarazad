@@ -29,3 +29,15 @@ class Book(TimeStampedModel):
     status = models.CharField(max_length=11, choices=STATUS, verbose_name="Book's Status")
     translators = models.ManyToManyField(User, blank=True, verbose_name="Book's Translators", related_name="book_translators")
 
+
+class InProgressBook(models.Model):
+    book = models.OneToOneField(Book, on_delete=models.CASCADE, related_name="in_progress_book", verbose_name="Book")
+    pages_left = models.PositiveIntegerField(verbose_name="Pages Left")
+    extra_notes = models.TextField(verbose_name="Extra Notes", blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.pages_left:
+            self.pages_left = self.book.pages_number
+
+        super(InProgressBook, self).save(*args, **kwargs)
+
