@@ -29,7 +29,6 @@ class Book(TimeStampedModel):
     status = models.CharField(max_length=11, choices=STATUS, verbose_name="Book's Status")
     translators = models.ManyToManyField(User, blank=True, verbose_name="Book's Translators",
                                          related_name="book_translators")
-    waiting_timer = models.DurationField(verbose_name="Waiting timer for Translators to join")
 
 
 class InProgressBook(models.Model):
