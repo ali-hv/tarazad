@@ -30,6 +30,9 @@ class Book(TimeStampedModel):
     translators = models.ManyToManyField(User, blank=True, verbose_name="Book's Translators",
                                          related_name="book_translators")
 
+    def __str__(self):
+        return self.name
+
 
 class InProgressBook(models.Model):
     book = models.OneToOneField(Book, on_delete=models.CASCADE, related_name="in_progress_book", verbose_name="Book")
