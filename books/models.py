@@ -39,6 +39,9 @@ class InProgressBook(models.Model):
     pages_left = models.PositiveIntegerField(verbose_name="Pages Left", blank=True, null=True)
     extra_notes = models.TextField(blank=True, null=True, verbose_name="Extra Notes")
 
+    class Meta:
+        verbose_name = "In Progress Book"
+
     def save(self, *args, **kwargs):
         if not self.pages_left:
             self.pages_left = self.book.pages_number
