@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 from core.models import TimeStampedModel
 from core.settings import AUTH_USER_MODEL
 
@@ -32,6 +33,11 @@ class Book(TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+    @admin.display(description="Number of Translators")
+    def get_number_of_translators(self):
+        book = Book.objects.get(id=self.id)
+        return book.translators.all().count()
 
 
 class InProgressBook(models.Model):
