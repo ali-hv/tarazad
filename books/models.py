@@ -58,6 +58,7 @@ class InProgressBook(models.Model):
 class Page(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="book_pages", verbose_name="Book")
     page = models.PositiveIntegerField()
+    original_content = models.TextField(verbose_name="Original Content")
     translated_content = models.TextField(blank=True, null=True, verbose_name="Translated Content")
     translator = models.ForeignKey(User, on_delete=models.PROTECT, blank=True, null=True,
                                    related_name="page_translator", verbose_name="Page's Translator")
