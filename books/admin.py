@@ -17,3 +17,4 @@ class PageAdmin(admin.ModelAdmin):
     list_display = ['book', 'page', 'translator', 'is_translated', ]
     readonly_fields = ('original_content', )
     fields = ('book', 'page', 'original_content', 'translated_content', 'is_translated', 'translator', )
+    list_filter = ['book__name', 'is_translated', ]
