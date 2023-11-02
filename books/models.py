@@ -27,13 +27,14 @@ class Book(TimeStampedModel):
     translated_date = models.DateTimeField(blank=True, null=True, verbose_name="Translated Date")
     min_translators = models.PositiveIntegerField(verbose_name="Minimum Number of Translators to Start")
     status = models.CharField(max_length=11, choices=STATUS, verbose_name="Book's Status")
-    translators = models.ManyToManyField(User, blank=True, verbose_name="Book's Translators", related_name="book_translators")
+    translators = models.ManyToManyField(User, blank=True, null=True, verbose_name="Book's Translators",
+                                         related_name="book_translators")
 
 
 class InProgressBook(models.Model):
     book = models.OneToOneField(Book, on_delete=models.CASCADE, related_name="in_progress_book", verbose_name="Book")
     pages_left = models.PositiveIntegerField(verbose_name="Pages Left")
-    extra_notes = models.TextField(verbose_name="Extra Notes", blank=True)
+    extra_notes = models.TextField(blank=True, null=True, verbose_name="Extra Notes")
 
     def save(self, *args, **kwargs):
         if not self.pages_left:
@@ -43,7 +44,8 @@ class InProgressBook(models.Model):
 
 
 class Page(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="book_pages")
-    file = models.FileField(upload_to="books/pages/")
-    translated_content = models.TextField()
-    translator = models.OneToOneField(User, on_delete=models.PROTECT, blank=True, null=True)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="book_pages", verbose_name="Book")
+    file = models.FileField(upload_to="books/pages/", verbose_name="Page's File")
+    translated_content = models.TextField(blank=True, null=True, verbose_name="Translated Content")
+    translator = models.OneToOneField(User, on_delete=models.PROTECT, blank=True, null=True,
+                                      related_name="page_translator", verbose_name="Page's Translator")
