@@ -41,3 +41,9 @@ class InProgressBook(models.Model):
 
         super(InProgressBook, self).save(*args, **kwargs)
 
+
+class Page(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="book_pages")
+    file = models.FileField(upload_to="books/pages/")
+    translated_content = models.TextField()
+    translator = models.OneToOneField(User, on_delete=models.PROTECT, blank=True, null=True)
