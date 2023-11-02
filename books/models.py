@@ -36,7 +36,7 @@ class Book(TimeStampedModel):
 
 class InProgressBook(models.Model):
     book = models.OneToOneField(Book, on_delete=models.CASCADE, related_name="in_progress_book", verbose_name="Book")
-    pages_left = models.PositiveIntegerField(verbose_name="Pages Left")
+    pages_left = models.PositiveIntegerField(verbose_name="Pages Left", blank=True, null=True)
     extra_notes = models.TextField(blank=True, null=True, verbose_name="Extra Notes")
 
     def save(self, *args, **kwargs):
