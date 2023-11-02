@@ -14,4 +14,6 @@ class InProgressBookAdmin(admin.ModelAdmin):
 
 @admin.register(Page)
 class PageAdmin(admin.ModelAdmin):
-    list_display = ['book', 'translator', ]
+    list_display = ['book', 'page', 'translator', 'is_translated', ]
+    readonly_fields = ('original_content', )
+    fields = ('book', 'page', 'original_content', 'translated_content', 'is_translated', 'translator', )
