@@ -20,12 +20,27 @@ def add_book_to_inprogressbooks(sender, instance: Book, **kwargs):
                 translators = instance.translators.all()
                 number_of_translators = translators.count()
                 pages_number = instance.pages_number
-                number_of_pages_for_each_translator = int(pages_number/number_of_translators)
-                for i, j in enumerate(range(1, pages_number+1, number_of_pages_for_each_translator)):
-                    for page in range(j, number_of_pages_for_each_translator + j):
-                        page_text = pdf_reader.pages[page-1].extract_text()
-                        page = Page(book=instance, page=page, original_content=page_text, translator=translators[i])
-                        page.save()
+
+                # Calculate the pages per translator and remainder
+                pages_per_translator = pages_number // number_of_translators
+                remainder = pages_number % number_of_translators
+
+                start_page = 1
+
+                for i, translator in enumerate(translators):
+                    # Calculate the number of pages for the current translator
+                    if i < remainder:
+                        pages_for_translator = pages_per_translator + 1
+                    else:
+                        pages_for_translator = pages_per_translator
+
+                    for page in range(start_page, start_page + pages_for_translator):
+                        page_text = pdf_reader.pages[page - 1].extract_text()
+                        page_instance = Page(book=instance, page=page, original_content=page_text,
+                                             translator=translator)
+                        page_instance.save()
+
+                    start_page += pages_for_translator
 
             elif instance.status == "translated":
                 book = get_object_or_404(InProgressBook, book=instance)
