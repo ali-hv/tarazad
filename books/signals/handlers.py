@@ -16,7 +16,8 @@ def add_book_to_inprogressbooks(sender, instance: Book, **kwargs):
                 pdf_file = open(instance.file.path, 'rb')
                 pdf_reader = PyPDF2.PdfReader(pdf_file)
 
-                book = InProgressBook.objects.create(book=instance)
+                InProgressBook.objects.create(book=instance)
+                
                 translators = instance.translators.all()
                 number_of_translators = translators.count()
                 pages_number = instance.pages_number
