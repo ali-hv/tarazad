@@ -55,10 +55,10 @@ def decrease_pages_left(sender, instance: Page, **kwargs):
     if instance.id is None:
         pass
     else:
-        previous = Page.objects.get(id=instance.id)
+        previous = get_object_or_404(Page, id=instance.id)
         if previous.is_reviewed != instance.is_reviewed:
             if instance.is_reviewed:
-                obj = InProgressBook.objects.get(book=instance.book)
+                obj = get_object_or_404(InProgressBook, book=instance.book)
                 if obj.pages_left == 1:
                     export_book(Page=Page, InProgressBook=InProgressBook, book=instance.book)
                 else:
