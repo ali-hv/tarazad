@@ -4,6 +4,8 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 import PyPDF2
 
+from books.scripts.export_book import export_book
+
 
 @receiver(pre_save, sender=Book)
 def add_book_to_inprogressbooks(sender, instance: Book, **kwargs):
@@ -46,3 +48,19 @@ def add_book_to_inprogressbooks(sender, instance: Book, **kwargs):
             elif instance.status == "translated":
                 book = get_object_or_404(InProgressBook, book=instance)
                 book.delete()
+
+
+@receiver(pre_save, sender=Page)
+def decrease_pages_left(sender, instance: Page, **kwargs):
+    if instance.id is None:
+        pass
+    else:
+        previous = Page.objects.get(id=instance.id)
+        if previous.is_reviewed != instance.is_reviewed:
+            if instance.is_reviewed:
+                obj = InProgressBook.objects.get(book=instance.book)
+                if obj.pages_left == 1:
+                    export_book(Page=Page, InProgressBook=InProgressBook, book=instance.book)
+                else:
+                    obj.pages_left -= 1
+                    obj.save()
