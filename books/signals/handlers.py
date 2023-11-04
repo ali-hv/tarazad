@@ -15,7 +15,7 @@ def add_book_to_inprogressbooks(sender, instance: Book, **kwargs):
         previous = Book.objects.get(id=instance.id)
         if previous.status != instance.status:
             if instance.status == "in-progress":
-                pdf_file = open(instance.file.path, 'rb')
+                pdf_file = open(instance.original_file.path, 'rb')
                 pdf_reader = PyPDF2.PdfReader(pdf_file)
 
                 InProgressBook.objects.create(book=instance)
@@ -60,7 +60,7 @@ def decrease_pages_left(sender, instance: Page, **kwargs):
             if instance.is_reviewed:
                 obj = get_object_or_404(InProgressBook, book=instance.book)
                 if obj.pages_left == 1:
-                    export_book(Page=Page, InProgressBook=InProgressBook, book=instance.book)
+                    export_book(book=instance.book)
                 else:
                     obj.pages_left -= 1
                     obj.save()
