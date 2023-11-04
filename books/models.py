@@ -20,7 +20,9 @@ class Book(TimeStampedModel):
 
     name = models.CharField(max_length=255, verbose_name="Book's Name")
     detail = models.TextField(verbose_name="Book's Detail")
-    file = models.FileField(upload_to="books/original/", verbose_name="Book's File")
+    original_file = models.FileField(upload_to="books/original/", verbose_name="Book's File")
+    translated_file = models.FileField(upload_to="books/translated/", blank=True, null=True,
+                                       verbose_name="Book's Translated File")
     author = models.CharField(max_length=255, verbose_name="Book's Author")
     language = models.CharField(max_length=5, choices=LANGUAGES, verbose_name="Book's Language")
     pages_number = models.PositiveIntegerField(verbose_name="Book's Pages Number")
