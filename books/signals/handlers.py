@@ -2,8 +2,8 @@ from django.shortcuts import get_object_or_404
 from books.models import Book, InProgressBook, Page
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-import PyPDF2
 
+from books.scripts.distribute_pages_to_translators import distribute
 from books.scripts.export_book import export_book
 
 
@@ -15,35 +15,7 @@ def add_book_to_inprogressbooks(sender, instance: Book, **kwargs):
         previous = Book.objects.get(id=instance.id)
         if previous.status != instance.status:
             if instance.status == "in-progress":
-                pdf_file = open(instance.original_file.path, 'rb')
-                pdf_reader = PyPDF2.PdfReader(pdf_file)
-
-                InProgressBook.objects.create(book=instance)
-
-                translators = instance.translators.all()
-                number_of_translators = translators.count()
-                pages_number = instance.pages_number
-
-                # Calculate the pages per translator and remainder
-                pages_per_translator = pages_number // number_of_translators
-                remainder = pages_number % number_of_translators
-
-                start_page = 1
-
-                for i, translator in enumerate(translators):
-                    # Calculate the number of pages for the current translator
-                    if i < remainder:
-                        pages_for_translator = pages_per_translator + 1
-                    else:
-                        pages_for_translator = pages_per_translator
-
-                    for page in range(start_page, start_page + pages_for_translator):
-                        page_text = pdf_reader.pages[page - 1].extract_text()
-                        page_instance = Page(book=instance, page=page, original_content=page_text,
-                                             translator=translator)
-                        page_instance.save()
-
-                    start_page += pages_for_translator
+                distribute(instance)
 
             elif instance.status == "translated":
                 book = get_object_or_404(InProgressBook, book=instance)
@@ -60,7 +32,7 @@ def decrease_pages_left(sender, instance: Page, **kwargs):
             if instance.is_reviewed:
                 obj = get_object_or_404(InProgressBook, book=instance.book)
                 if obj.pages_left == 1:
-                    export_book(book=instance.book)
+                    export_book(instance.book)
                 else:
                     obj.pages_left -= 1
                     obj.save()
