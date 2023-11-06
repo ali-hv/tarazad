@@ -124,6 +124,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIRS = (
     BASE_DIR / 'home/static',
+    BASE_DIR / 'accounts/static'
 )
 
 # Media files
