@@ -4,30 +4,24 @@
 {% block title %}ترازاد | ترجمه آزاد کتاب{% endblock %}
 
 {% block content %}
-<section id="hero" class="section hero">
-    <div class="container">
-        <div class="row row-content">
-            <div class="col-12 col-md-12 col-lg-6">
-                <div class="hero-headline">ترجمه آزاد و گروهی کتاب ها</div>
-                <div class="hero-action">
-                    <a href="#" class="btn btn--gradient" data-scroll="scrollTo">به مترجمان بپیوندید</a>
-                    <span class="video-button">
-                        <a class="popup-video" href="https://www.youtube.com/watch?v=test">
-                            <span class="player-text">معرفی</span>
-                            <span class="btn-player"><img src="{% static 'home/images/video/player.svg' %}"
-                                    alt="video player"></span>
-                        </a>
-                    </span>
-                </div>
-            </div>
-            <div class="col-12 col-md-12 col-lg-6">
-                <div class="hero-img">
-                    <img class="img-fluid" src="{% static 'home/images/hero/hero.png' %}" alt="background">
-                </div>
-            </div>
+<div class="row row-content">
+    <div class="col-12 col-md-12 col-lg-6">
+        <div class="hero-headline">ترجمه آزاد و گروهی کتاب ها</div>
+        <div class="hero-action">
+            <a href="#" class="btn btn--gradient" data-scroll="scrollTo">به مترجمان بپیوندید</a>
+            <span class="video-button">
+                <a class="popup-video" href="https://www.youtube.com/watch?v=test">
+                    <span class="player-text">معرفی</span>
+                    <span class="btn-player"><img src="{% static 'home/images/video/player.svg' %}"
+                            alt="video player"></span>
+                </a>
+            </span>
         </div>
-        <!-- .row end -->
     </div>
-    <!-- .container end -->
-</section>
+    <div class="col-12 col-md-12 col-lg-6">
+        <div class="hero-img">
+            <img class="img-fluid" src="{% static 'home/images/hero/hero.png' %}" alt="background">
+        </div>
+    </div>
+</div>
 {% endblock content %}
