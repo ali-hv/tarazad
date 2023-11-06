@@ -20,6 +20,7 @@ class Book(TimeStampedModel):
 
     name = models.CharField(max_length=255, verbose_name="Book's Name")
     detail = models.TextField(verbose_name="Book's Detail")
+    cover_image = models.ImageField(upload_to='books/cover/', verbose_name="Book's Cover Image")
     original_file = models.FileField(upload_to="books/original/", verbose_name="Book's File")
     translated_md_file = models.FileField(upload_to="books/translated/markdown/", blank=True, null=True,
                                           verbose_name="Book's Translated MD File")
