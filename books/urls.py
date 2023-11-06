@@ -1,3 +1,8 @@
 from django.urls import path
+from .views import books_list
 
-urlpatterns = []
+app_name = "books"
+
+urlpatterns = [
+    path('list/', books_list, name='books_list')
+]
