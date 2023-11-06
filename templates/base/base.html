@@ -12,8 +12,14 @@
 <body class="body-scroll">
     <div id="wrapper" class="wrapper clearfix">
     {% include 'base/header.html' %}
+    
+    <section id="hero" class="section hero">
+        <div class="container">
 
-    {% block content %}{%  endblock content %}
+            {% block content %}{%  endblock content %}
+
+        </div>
+    </section>
 
     {% include 'base/footer.html' %}
     </div>
