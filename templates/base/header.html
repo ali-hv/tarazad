@@ -33,8 +33,8 @@
                                 <a href="#"><button class="button" id="dashboard"><span>      داشبورد</span></button></a>
                                 <a href="{% url 'accounts:logout' %}"><button class="button" id="logout"><span>      خروج</span></button></a>
                             {% else %}
-                                <a href="{% url 'accounts:register' %}"><button class="button" id="cut"><span>      عضویت</span></button></a>
-                                <a href="{% url 'accounts:login' %}"><button class="button" id="paste"><span>      ورود</span></button></a>
+                                <a href="{% url 'accounts:register' %}"><button class="button" id="register"><span>      عضویت</span></button></a>
+                                <a href="{% url 'accounts:login' %}"><button class="button" id="login"><span>      ورود</span></button></a>
                             {% endif %}
                         </div>
                     </li>
