@@ -11,13 +11,13 @@
                 </div>
                 <div class="col-12 col-md-12 col-lg-8">
                     <div class="footer-menu">
-                        <a href="#">خانه</a>
-                        <a href="#">کتاب ها</a>
+                        <a href="{% url 'home:home_page' %}">خانه</a>
+                        <a href="{% url 'books:books_list' %}">کتاب ها</a>
                         <a href="#">مترجمان</a>
                         <a href="#">انتخاب کتاب</a>
-                        <a href="#">حمایت</a>
-                        <a href="#">درباره ما</a>
-                        <a href="#">تماس با ما</a>
+                        <a href="{% url 'home:support' %}">حمایت</a>
+                        <a href="{% url 'home:about_us' %}">درباره ما</a>
+                        <a href="{% url 'home:contact_us' %}">تماس با ما</a>
                     </div>
                 </div>
             </div><!-- .row end -->
