@@ -2624,16 +2624,15 @@ footer .footer-bottom hr {
     place-items: center;
   }
   
-  #cut {
+  #register, #dashboard {
     background-color: rgb(85,131,241);
     border: 1px solid rgb(85,131,241);
     
   }
   
-  #paste {
+  #login, #logout {
     background-color: rgb(242,185,42);
     border: 1px solid rgb(242,185,42);
-    
   }
   
   
@@ -2669,13 +2668,23 @@ footer .footer-bottom hr {
     right: 0;
   }
   
-  #cut span:after {
+  #register span:after {
     font-family: FontAwesome;
     content: "\f234";
   }
   
-  #paste span:after {
+  #login span:after {
     font-family: FontAwesome;
     content: "\f045";
+  }
+
+  #dashboard span:after {
+    font-family: FontAwesome;
+    content: "\f0ae";
+  }
+
+  #logout span:after {
+    font-family: FontAwesome;
+    content: "\f08b";
   }
 /* END login register button */
