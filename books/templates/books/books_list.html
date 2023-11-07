@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load jalali_tags %}
 {% load static %}
 
 {% block title %}کتاب ها{% endblock %}
@@ -25,7 +26,7 @@
             <h4 class="card-title">{{ book.name }}</h4><br><br>
             {% if book.status == 'translated' %}
                 <small class="book-detail">تعداد مترجمان مشارکت کرده: {{ book.translators.count }}</small><br><br>
-                <small class="book-detail">تاریخ اتمام ترجمه: {{ book.translated_date }}</small><br><br>
+                <small class="book-detail">تاریخ اتمام ترجمه: {{ book.translated_date|to_jalali:'%Y/%m/%d' }}</small><br><br>
             {% else %}
                 <small class="book-detail">حداقل تعداد مترجمان برای شروع: {{ book.min_translators }}</small><br><br>
                 <small class="book-detail">تعداد مترجمان عضو شده: {{ book.translators.count }}</small><br><br>
@@ -37,7 +38,9 @@
                 <button type="button" id="in-progress" class="btn btn-primary btn-md">درحال ترجمه</button>
             {% else %}
                 {% if user in book.translators.all %}
-                    <button type="button" id="translating-date" class="btn btn-primary btn-md">ترجمه این کتاب در تاریخ {{ book.translating_date }} شروع می شود</button>
+                    <button type="button" id="translating-date" class="btn btn-primary btn-md">
+                        ترجمه این کتاب در تاریخ {{ book.translating_date|to_jalali:'%Y/%m/%d' }} شروع می شود
+                    </button>
                 {% else %}
                     <a href="{% url 'books:add_translator' book_id=book.id %}"><button type="button" class="btn btn-primary btn-md">عضویت در مترجمان</button></a>
                 {% endif %}
