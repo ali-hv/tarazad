@@ -12,6 +12,12 @@
 <body class="body-scroll">
     <div id="wrapper" class="wrapper clearfix">
     {% include 'base/header.html' %}
+
+    <div style="text-align: right; font-size: 20px; margin-right: 10px; color: black;">
+    {% if messages %}
+        {% for message in messages %}{{ message }}{% endfor %}
+    {% endif %}
+    </div>
     
     <section id="hero" class="section hero">
         <div class="container">
