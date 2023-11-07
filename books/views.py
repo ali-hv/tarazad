@@ -15,7 +15,7 @@ def add_translator(request, book_id):
         if book.status == 'not-started':
             if request.user not in book.translators.all():
                 book.translators.add(request.user)
-                messages.success(request, 'شما با موفقیت به مترجمان این کتاب اضافه شدید. لطفا در زمان مشخض شده با مراجعه به داشبورد، صفحات مشخص شده را ترجمه کنید')
+                messages.success(request, 'شما با موفقیت به مترجمان این کتاب اضافه شدید. لطفا در زمان مشخص شده با مراجعه به داشبورد، صفحات مشخص شده را ترجمه کنید')
             else:
                 messages.warning(request, 'شما قبلا در ترجمه این کتاب عضو شده اید')
         else:
