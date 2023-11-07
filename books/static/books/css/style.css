@@ -1,0 +1,41 @@
+
+.card-img-top {
+    max-height: 400px;
+    object-fit: contain;
+}
+
+.card-title {
+    font-size: 15px;
+    float: right;
+    color: #494949;
+    text-align: right;
+}
+
+.card-body button {
+    font-size: 20px;
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #5151f8;
+}
+
+.card-body small {
+    float: right;
+    font-size: 15px;
+}
+
+#download {
+    background-color: limegreen;
+}
+
+#download:hover {
+    background-color: #55d955;
+}
+
+#in-progress {
+    background-color: red;
+}
+
+#translating-date {
+    font-size: 9px;
+}
