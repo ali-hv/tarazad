@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en" class="has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>داشبورد</title>
+
+  <!-- Bulma is included -->
+  <link rel="stylesheet" href="css/main.min.css">
+
+  <!-- Fonts -->
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="app">
+  <nav id="navbar-main" class="navbar is-fixed-top">
+    <div class="navbar-brand">
+      <a class="navbar-item is-hidden-desktop jb-aside-mobile-toggle">
+        <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
+      </a>
+    </div>
+    <div class="navbar-brand is-right">
+      <a class="navbar-item is-hidden-desktop jb-navbar-menu-toggle" data-target="navbar-menu">
+        <span class="icon"><i class="mdi mdi-dots-vertical"></i></span>
+      </a>
+    </div>
+    <div class="navbar-menu fadeIn animated faster" id="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown has-dropdown-with-icons has-divider has-user-avatar is-hoverable">
+          <a class="navbar-link is-arrowless">
+            <div class="is-user-avatar">
+              <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe">
+            </div>
+            <div class="is-user-name"><span>علی حسین وردی</span></div>
+            <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
+          </a>
+          <div class="navbar-dropdown">
+            <a href="#" class="navbar-item">
+              <span class="icon"><i class="mdi mdi-account"></i></span>
+              <span>پروفایل</span>
+            </a>
+            <a href="#" class="navbar-item">
+              <span class="icon"><i class="mdi mdi-settings"></i></span>
+              <span>تنظیمات</span>
+            </a>
+            <a href="#" class="navbar-item">
+              <span class="icon"><i class="mdi mdi-email"></i></span>
+              <span>پیام ها</span>
+            </a>
+            <hr class="navbar-divider">
+            <a href="#" class="navbar-item">
+              <span class="icon"><i class="mdi mdi-logout"></i></span>
+              <span>خروج</span>
+            </a>
+          </div>
+        </div>
+        <a href="#" title="About" class="navbar-item has-divider is-desktop-icon-only">
+          <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
+          <span>درباره</span>
+        </a>
+        <a title="Log out" class="navbar-item is-desktop-icon-only">
+          <span class="icon"><i class="mdi mdi-logout"></i></span>
+          <span>خروج</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <aside dir="ltr" class="aside is-placed-left is-expanded">
+    <div class="aside-tools">
+      <div class="aside-tools-label">
+        <span><b>ترازاد - </b> ترجمه آزاد کتاب</span>
+      </div>
+    </div>
+    <div class="menu is-menu-main">
+      <ul class="menu-list">
+        <li>
+          <a href="#" class="is-active router-link-active has-icon">
+            <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
+            <span class="menu-item-label">داشبورد</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="menu-list">
+        <li>
+          <a href="#" class="has-icon">
+            <span class="icon has-update-mark"><i class="mdi mdi-table"></i></span>
+            <span class="menu-item-label">کتاب ها</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="has-icon">
+            <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
+            <span class="menu-item-label">ترجمه ها</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="has-icon">
+            <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+            <span class="menu-item-label">پروفایل</span>
+          </a>
+        </li>
+        <li>
+          <a class="has-icon has-dropdown-icon">
+            <span class="icon"><i class="mdi mdi-view-list"></i></span>
+            <span class="menu-item-label">عملکرد</span>
+            <div class="dropdown-icon">
+              <span class="icon"><i class="mdi mdi-plus"></i></span>
+            </div>
+          </a>
+          <ul>
+            <li>
+              <a href="#void">
+                <span>امتیاز</span>
+              </a>
+            </li>
+            <li>
+              <a href="#void">
+                <span>رتبه</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </aside>
+  <section class="section is-title-bar">
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <ul>
+            <li>کاربر</li>
+            <li>داشبورد</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="hero is-hero-bar">
+    <div class="hero-body">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item"><h1 class="title">
+            داشبورد
+          </h1></div>
+        </div>
+        <div class="level-right" style="display: none;">
+          <div class="level-item"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section is-main-section">
+    <div class="card has-table has-mobile-sort-spaced">
+      <header class="card-header">
+        <p class="card-header-title">
+          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+          صفحات
+        </p>
+        <a href="#" class="card-header-icon">
+          <span class="icon"><i class="mdi mdi-reload"></i></span>
+        </a>
+      </header>
+      <div class="card-content">
+        <div class="b-table has-pagination">
+          <div class="table-wrapper has-mobile-cards">
+            <table class="table is-fullwidth is-striped is-hoverable is-sortable is-fullwidth">
+              <thead>
+              <tr>
+                <th></th>
+                <th style="text-align: right;">نام کتاب</th>
+                <th style="text-align: right;">تعداد صفحات ترجمه شده</th>
+                <th style="text-align: right;">تعداد صفحات مانده</th>
+                <th style="text-align: right;">وضعیت ترجمه کل کتاب</th>
+                <th style="text-align: right;">مهلت ترجمه</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td class="is-image-cell">
+                  <div class="image">
+                    <img class="is-rounded">
+                  </div>
+                </td>
+                <td data-label="Name">توسعه میکروسرویس ها با پایتون - ویرایش دوم</td>
+                <td data-label="Company">3</td>
+                <td data-label="City">1</td>
+                <td data-label="Progress" class="is-progress-cell">
+                  <progress max="100" class="progress is-small is-primary" value="70">79</progress>
+                </td>
+                <td data-label="Created">
+                  <small class="has-text-grey is-abbr-like" title="Oct 25, 2020">Oct 25, 2020</small>
+                </td>
+                <td class="is-actions-cell">
+                  <div class="buttons is-right">
+                    <button class="button is-small is-primary" type="button">
+                      <span class="icon"><i class="mdi mdi-eye"></i></span>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script type="text/javascript" src="js/main.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script type="text/javascript" src="js/chart.sample.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
+</body>
+</html>
