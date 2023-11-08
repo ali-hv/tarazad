@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html dir="rtl" lang="en" class="has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded">
 <head>
@@ -7,7 +9,7 @@
   <title>داشبورد</title>
 
   <!-- Bulma is included -->
-  <link rel="stylesheet" href="css/main.min.css">
+  <link rel="stylesheet" href="{% static 'dashboard/css/main.min.css' %}">
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -210,9 +212,9 @@
   </section>
 </div>
 
-<script type="text/javascript" src="js/main.min.js"></script>
+<script type="text/javascript" src="{% static 'dashboard/js/main.min.js' %}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<script type="text/javascript" src="js/chart.sample.min.js"></script>
+<script type="text/javascript" src={% static 'dashboard/js/chart.sample.min.js' %}></script>
 
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
 </body>
