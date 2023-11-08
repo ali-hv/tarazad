@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from .models import Book
+from django.http import Http404
+from .models import Book, Page
 
 
 def books_list(request):
@@ -24,3 +25,19 @@ def add_translator(request, book_id):
         return redirect('books:books_list')
     else:
         return redirect('accounts:login')
+
+
+def submit_translation(request):
+    if request.method == "POST":
+        data = dict(**request.POST)
+        page_id = data['page_id'][0]
+        translated_content = data['text'][0]
+        page = get_object_or_404(Page, id=page_id)
+
+        if request.user == page.translator and not page.is_translated:
+            page.translated_content = translated_content
+            page.is_translated = True
+            page.save()
+            return redirect('dashboard:book_pages', page.book.id)
+
+        raise Http404
