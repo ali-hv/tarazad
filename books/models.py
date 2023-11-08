@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.db import models
 from django.contrib import admin
 from core.models import TimeStampedModel
@@ -40,6 +42,9 @@ class Book(TimeStampedModel):
     def __str__(self):
         return self.name
 
+    def get_translating_deadline(self):
+        return self.translating_date + timedelta(days=7)
+
     @admin.display(description="Number of Translators")
     def get_number_of_translators(self):
         book = Book.objects.get(id=self.id)
@@ -53,6 +58,9 @@ class InProgressBook(models.Model):
 
     class Meta:
         verbose_name = "In Progress Book"
+
+    def number_of_translated_pages_percentage(self):
+        return int((self.book.pages_number - self.pages_left)/ self.book.pages_number * 100)
 
     def save(self, *args, **kwargs):
         if not self.pages_left:
