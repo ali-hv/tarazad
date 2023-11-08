@@ -1,0 +1,84 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}داشبورد | ترجمه{% endblock %}
+
+{% block content %}
+
+<section class="hero is-hero-bar">
+    <div class="hero-body">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item"><h1 class="title">
+            ترجمه
+          </h1></div>
+        </div>
+        <div class="level-right" style="display: none;">
+          <div class="level-item"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section is-main-section">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          <span class="icon"><i class="mdi mdi-ballot"></i></span>
+          ترجمه
+        </p>
+      </header>
+      <div class="card-content">
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">متن اصلی</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                <div class="control" dir="ltr">
+                    <p>{{ page.original_content|linebreaks  }}</p>
+                </div>
+                </div>
+            </div>
+          </div>
+          <form method="post" action="{% url 'books:submit_translation' %}">
+          {% csrf_token %}
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">متن ترجمه</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                    <textarea name="text" class="textarea" required="true" placeholder="ترجمه خود را اینجا بنویسید"></textarea>
+                    <input type="hidden" name="page_id" value="{{ page.id }}">
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="field is-horizontal">
+            <div class="field-label">
+              <!-- Left empty for spacing -->
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="field is-grouped">
+                  <div class="control">
+                      <input type="submit" class="button is-primary" value="ثبت">
+                  </div>
+                  <div class="control" style="margin-right: 5px;">
+                    <a href="{% url 'dashboard:book_pages' page.book.id %}">
+                        <button type="button" class="button is-primary is-outlined">
+                            <span>بازگشت</span>
+                        </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </form>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

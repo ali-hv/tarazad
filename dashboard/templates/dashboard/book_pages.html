@@ -1,0 +1,95 @@
+{% extends 'dashboard/base.html' %}
+{% load jalali_tags %}
+
+{% block title %}داشبورد | صفحات من{% endblock %}
+
+{% block content %}
+
+<section class="hero is-hero-bar">
+<div class="hero-body">
+  <div class="level">
+    <div class="level-left">
+      <div class="level-item"><h1 class="title">
+        صفحات من
+      </h1></div>
+    </div>
+    <div class="level-right" style="display: none;">
+      <div class="level-item"></div>
+    </div>
+  </div>
+</div>
+</section>
+<section class="section is-main-section">
+<div class="card has-table has-mobile-sort-spaced">
+  <header class="card-header">
+    <p class="card-header-title">
+      <span class="icon"><i class="mdi mdi-table"></i></span>
+      صفحات من
+    </p>
+    <a href="#" class="card-header-icon">
+      <span class="icon"><i class="mdi mdi-reload"></i></span>
+    </a>
+  </header>
+  <div class="card-content">
+    <div class="b-table has-pagination">
+      <div class="table-wrapper has-mobile-cards">
+        <table class="table is-fullwidth is-striped is-hoverable is-sortable is-fullwidth">
+          <thead>
+          <tr>
+            <th></th>
+            <th style="text-align: right;">نام کتاب</th>
+            <th style="text-align: right;">ترجمه شده</th>
+            <th style="text-align: right;">تایید شده</th>
+            <th style="text-align: right;">شماره صفحه</th>
+            <th style="text-align: right;">مهلت ترجمه</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for page in pages %}
+          <tr>
+            <td class="is-image-cell">
+              <div class="image">
+                <img class="is-rounded">
+              </div>
+            </td>
+            <td data-label="نام کتاب">{{ page.book.name }}</td>
+            {% if page.is_translated %}
+                <td data-label="ترجمه شده"><i class="mdi mdi-check-circle-outline"></i></td>
+            {% else %}
+                <td data-label="ترجمه شده"><i class="mdi mdi-close-circle"></i></td>
+            {% endif %}
+
+            {% if page.is_reviewed %}
+                <td data-label="بررسی شده"><i class="mdi mdi-check-circle-outline"></i></td>
+            {% else %}
+                <td data-label="بررسی شده"><i class="mdi mdi-close-circle"></i></td>
+            {% endif %}
+
+            <td data-label="شماره صفحه">{{ page.page }}</td>
+            <td data-label="مهلت ترجمه">
+              <small class="has-text-grey is-abbr-like" title="Oct 25, 2020">{{ page.book.get_translating_deadline|to_jalali:'%Y/%m/%d' }}</small>
+            </td>
+
+            {% if not page.is_translated %}
+            <td class="is-actions-cell">
+              <div class="buttons is-right">
+                <a href="{% url 'dashboard:translate_page' page.id %}">
+                    <button class="button is-small is-primary" type="button">
+                        <span class="icon"><i class="mdi mdi-eye"></i></span>
+                    </button>
+                </a>
+              </div>
+            </td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+{% endblock %}
