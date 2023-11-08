@@ -30,7 +30,7 @@
                     <li>
                         <div style="margin-left: -150px; margin-top: 45px;">
                             {% if user.is_authenticated %}
-                                <a href="#"><button class="button" id="dashboard"><span>      داشبورد</span></button></a>
+                                <a href="{% url 'dashboard:dashboard' %}"><button class="button" id="dashboard"><span>      داشبورد</span></button></a>
                                 <a href="{% url 'accounts:logout' %}"><button class="button" id="logout"><span>      خروج</span></button></a>
                             {% else %}
                                 <a href="{% url 'accounts:register' %}"><button class="button" id="register"><span>      عضویت</span></button></a>
