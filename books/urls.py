@@ -6,5 +6,5 @@ app_name = "books"
 urlpatterns = [
     path('list/', books_list, name='books_list'),
     path('add_translator/<int:book_id>', add_translator, name='add_translator'),
-    path('submit_translation/<int:page_id>', submit_translation, name='submit_translation'),
+    path('submit_translation/', submit_translation, name='submit_translation'),
 ]
