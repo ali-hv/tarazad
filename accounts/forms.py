@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.password_validation import validate_password
 
 
@@ -44,3 +45,11 @@ class UserRegisterForm(forms.Form):
             email=self.cleaned_data['email'],
         )
         return user
+
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['old_password'].widget.attrs.update({'class': 'input'})
+        self.fields['new_password1'].widget.attrs.update({'class': 'input'})
+        self.fields['new_password2'].widget.attrs.update({'class': 'input'})
