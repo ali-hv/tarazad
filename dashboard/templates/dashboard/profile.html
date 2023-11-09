@@ -71,6 +71,7 @@
                 </header>
                 <div class="card-content">
                 <form method="post" action="#">
+                    {% csrf_token %}
                     <div class="field is-horizontal">
                     <div class="field-label is-normal"><label class="label">آواتار</label></div>
                     <div class="field-body">
@@ -131,6 +132,21 @@
         </div>
     </div>
     <div class="card">
+        <br>
+        <div style="text-align: right; font-size: 20px; margin-right: 24px; color: gray;">
+            {% if messages %}
+                {% for message in messages %}{{ message }}{% endfor %}
+            {% endif %}
+        </div>
+
+        {% if form.errors %}
+            <div style="text-align: right; font-size: 20px; margin-right: 24px; color: gray;">
+                {% for error in form.error_messages %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
         <header class="card-header">
         <p class="card-header-title">
             <span class="icon"><i class="mdi mdi-lock default"></i></span>
@@ -138,7 +154,8 @@
         </p>
         </header>
         <div class="card-content">
-        <form method="post" action="#">
+        <form method="post" action="{% url 'accounts:change_password' %}">
+            {% csrf_token %}
             <div class="field is-horizontal">
             <div class="field-label is-normal">
                 <label class="label">رمز عبور فعلی</label>
@@ -146,7 +163,7 @@
             <div class="field-body">
                 <div class="field">
                 <div class="control">
-                    <input type="password" name="password_current" autocomplete="current-password" class="input" required>
+                    {{ form.old_password }}
                 </div>
                 <p class="help">رمز عبور فعلی خود را وارد کنید</p></div>
             </div>
@@ -159,7 +176,7 @@
             <div class="field-body">
                 <div class="field">
                 <div class="control">
-                    <input type="password" autocomplete="new-password" name="password" class="input" required>
+                    {{ form.new_password1 }}
                 </div>
                 <p class="help">رمز عبور جدید خود را وارد کنید</p>
                 </div>
@@ -172,7 +189,7 @@
             <div class="field-body">
                 <div class="field">
                 <div class="control">
-                    <input type="password" autocomplete="new-password" name="password_confirmation" class="input" required>
+                    {{ form.new_password2 }}
                 </div>
                 <p class="help">رمز عبور جدید خود را دوباره وارد کنید</p>
                 </div>
