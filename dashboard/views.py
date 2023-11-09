@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from accounts.forms import CustomPasswordChangeForm
 from books.models import Book, Page
 from django.http import Http404
 
@@ -13,7 +14,8 @@ def dashboard(request):
 
 def profile(request):
     if request.user.is_authenticated:
-        return render(request, 'dashboard/profile.html')
+        form = CustomPasswordChangeForm(request.user)
+        return render(request, 'dashboard/profile.html', {'form': form})
     raise Http404
 
 
