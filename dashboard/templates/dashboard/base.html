@@ -47,22 +47,13 @@
               <span class="icon"><i class="mdi mdi-account"></i></span>
               <span>پروفایل</span>
             </a>
-            <a href="#" class="navbar-item">
-              <span class="icon"><i class="mdi mdi-settings"></i></span>
-              <span>تنظیمات</span>
-            </a>
-            <a href="#" class="navbar-item">
-              <span class="icon"><i class="mdi mdi-email"></i></span>
-              <span>پیام ها</span>
-            </a>
-            <hr class="navbar-divider">
             <a href="{% url 'accounts:logout' %}" class="navbar-item">
               <span class="icon"><i class="mdi mdi-logout"></i></span>
               <span>خروج</span>
             </a>
           </div>
         </div>
-        <a href="#" title="About" class="navbar-item has-divider is-desktop-icon-only">
+        <a href="{% url 'home:about_us' %}" title="About" class="navbar-item has-divider is-desktop-icon-only">
           <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
           <span>درباره</span>
         </a>
@@ -82,7 +73,7 @@
     <div class="menu is-menu-main">
       <ul class="menu-list">
         <li>
-          <a href="{% url 'dashboard:dashboard' %}" class="is-active router-link-active has-icon">
+          <a href="{% url 'dashboard:dashboard' %}" class="has-icon">
             <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
             <span class="menu-item-label">داشبورد</span>
           </a>
@@ -96,7 +87,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="has-icon">
+          <a href="{% url 'dashboard:dashboard' %}" class="has-icon">
             <span class="icon"><i class="mdi mdi-book-multiple"></i></span>
             <span class="menu-item-label">کتاب ها</span>
           </a>
