@@ -1,9 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
-from django.http import Http404, JsonResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordChangeView
 from .forms import UserLoginForm, UserRegisterForm
 from .scripts.translate_errors import to_persian
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.urls import reverse_lazy
+from django.contrib import messages
 
 
 def login_page(request):
@@ -48,12 +51,6 @@ def logout_user(request):
     return redirect('home:home_page')
 
 
-# views.py
-from django.contrib.auth.views import PasswordChangeView
-from django.urls import reverse_lazy
-from django.contrib import messages
-
-
 class ChangePassword(PasswordChangeView):
     template_name = 'dashboard/profile.html'  # Customize this with your template
     success_url = reverse_lazy('dashboard:profile')  # Redirect to the user's profile page after a successful password change
@@ -70,23 +67,20 @@ class ChangePassword(PasswordChangeView):
         return super().form_invalid(form)
 
 
+@login_required
 def change_info(request):
-    if request.user.is_authenticated:
-        if request.method == "POST":
-            user = request.user
+    if request.method == "POST":
+        user = request.user
 
-            user.first_name = request.POST.get('first_name', '')
-            user.last_name = request.POST.get('last_name', '')
+        user.first_name = request.POST.get('first_name', '')
+        user.last_name = request.POST.get('last_name', '')
 
-            if 'avatar' in request.FILES:
-                avatar = request.FILES['avatar']
-                user.avatar = avatar
+        if 'avatar' in request.FILES:
+            avatar = request.FILES['avatar']
+            user.avatar = avatar
 
-            user.save()
+        user.save()
 
-            return JsonResponse({'success': True})
+        return JsonResponse({'success': True})
 
-        return redirect('dashboard:profile')
-
-    raise Http404
-
+    return redirect('dashboard:profile')
