@@ -33,13 +33,17 @@
         <div class="navbar-item has-dropdown has-dropdown-with-icons has-divider has-user-avatar is-hoverable">
           <a class="navbar-link is-arrowless">
             <div class="is-user-avatar">
-              <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe">
+              {% if user.avatar %}
+                  <img src="{{ user.avatar.url }}" alt="{{ user.get_full_name }}">
+              {% else %}
+                  <img src="{% static 'home/images/icons/default-avatar.png' %}" alt="{{ user.get_full_name }}">
+              {% endif %}
             </div>
-            <div class="is-user-name"><span>علی حسین وردی</span></div>
+            <div class="is-user-name"><span>&nbsp;علی حسین وردی</span></div>
             <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
           </a>
           <div class="navbar-dropdown">
-            <a href="#" class="navbar-item">
+            <a href="{% url 'dashboard:profile' %}" class="navbar-item">
               <span class="icon"><i class="mdi mdi-account"></i></span>
               <span>پروفایل</span>
             </a>
@@ -86,8 +90,14 @@
       </ul>
       <ul class="menu-list">
         <li>
+          <a href="{% url 'dashboard:profile' %}" class="has-icon">
+            <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+            <span class="menu-item-label">پروفایل</span>
+          </a>
+        </li>
+        <li>
           <a href="#" class="has-icon">
-            <span class="icon has-update-mark"><i class="mdi mdi-table"></i></span>
+            <span class="icon"><i class="mdi mdi-book-multiple"></i></span>
             <span class="menu-item-label">کتاب ها</span>
           </a>
         </li>
@@ -95,12 +105,6 @@
           <a href="#" class="has-icon">
             <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
             <span class="menu-item-label">ترجمه ها</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="has-icon">
-            <span class="icon"><i class="mdi mdi-account-circle"></i></span>
-            <span class="menu-item-label">پروفایل</span>
           </a>
         </li>
         <li>
@@ -114,11 +118,13 @@
           <ul>
             <li>
               <a href="#void">
+                <span class="icon"><i class="mdi mdi-plus-minus"></i></span>
                 <span>امتیاز</span>
               </a>
             </li>
             <li>
               <a href="#void">
+                <span class="icon"><i class="mdi mdi-podium-gold"></i></span>
                 <span>رتبه</span>
               </a>
             </li>
