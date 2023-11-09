@@ -30,9 +30,9 @@
                 </p>
                 </header>
                 <div class="card-content">
-                <div class="is-user-avatar image has-max-width is-aligned-center">
+                <div class="is-user-avatar image has-max-width is-aligned-center" style="height: 100px">
                     {% if user.avatar %}
-                        <img src="{{ user.avatar.url }}" alt="{{ user.get_full_name }}">
+                        <img src="{{ user.avatar.url }}" alt="{{ user.get_full_name }}" style="border-radius: 50%; height: 100%;">
                     {% else %}
                         <img src="{% static 'home/images/icons/default-avatar.png' %}" alt="{{ user.get_full_name }}">
                     {% endif %}
@@ -70,63 +70,68 @@
                 </p>
                 </header>
                 <div class="card-content">
-                <form method="post" action="#">
-                    {% csrf_token %}
-                    <div class="field is-horizontal">
-                    <div class="field-label is-normal"><label class="label">آواتار</label></div>
-                    <div class="field-body">
-                        <div class="field">
-                        <div class="field file">
-                            <label class="upload control">
-                            <a class="button is-primary">
-                                <span class="icon"><i class="mdi mdi-upload default"></i></span>
-                                <span>&nbsp;&nbsp;انتخاب فایل</span>
-                            </a>
-                            <input type="file">
-                            </label>
+
+                    <div id="loadingMessage" style="display: none;">درحال آپلود ...</div>
+                    <div id="successMessage" style="display: none;">تغییرات با موفقیت ذخیره شد</div>
+                    <br>
+
+                    <form method="post" action="{% url 'accounts:change_info' %}" enctype="multipart/form-data" id="profileForm">
+                        {% csrf_token %}
+                        <div class="field is-horizontal">
+                        <div class="field-label is-normal"><label class="label">آواتار</label></div>
+                        <div class="field-body">
+                            <div class="field">
+                            <div class="field file">
+                                <label class="upload control">
+                                <a class="button is-primary">
+                                    <span class="icon"><i class="mdi mdi-upload default"></i></span>
+                                    <span>&nbsp;&nbsp;انتخاب فایل</span>
+                                </a>
+                                <input type="file" name="avatar" id="avatarInput">
+                                </label>
+                            </div>
+                            </div>
                         </div>
                         </div>
-                    </div>
-                    </div>
-                    <hr>
-                    <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label">نام</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                        <div class="control">
-                            <input type="text" autocomplete="on" name="name" value="{{ user.first_name }}" class="input" required>
+                        <hr>
+                        <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">نام</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                            <div class="control">
+                                <input type="text" autocomplete="on" name="first_name" value="{{ user.first_name }}" class="input" required>
+                            </div>
+                            </div>
                         </div>
                         </div>
-                    </div>
-                    </div>
-                    <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label">نام خانوادگی</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                        <div class="control">
-                            <input type="text" autocomplete="on" name="name" value="{{ user.last_name }}" class="input" required>
+                        <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">نام خانوادگی</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                            <div class="control">
+                                <input type="text" autocomplete="on" name="last_name" value="{{ user.last_name }}" class="input" required>
+                            </div>
+                            </div>
                         </div>
                         </div>
-                    </div>
-                    </div>
-                    <hr>
-                    <div class="field is-horizontal">
-                    <div class="field-label is-normal"></div>
-                    <div class="field-body">
-                        <div class="field">
-                        <div class="control">
-                            <button type="submit" class="button is-primary">
-                            ثبت
-                            </button>
+                        <hr>
+                        <div class="field is-horizontal">
+                        <div class="field-label is-normal"></div>
+                        <div class="field-body">
+                            <div class="field">
+                            <div class="control">
+                                <button type="button" class="button is-primary" onclick="uploadAvatar()">
+                                ثبت
+                                </button>
+                            </div>
+                            </div>
                         </div>
                         </div>
-                    </div>
-                    </div>
-                </form>
+                    </form>
                 </div>
             </div>
         </div>
@@ -212,5 +217,40 @@
         </div>
     </div>
 </section>
+<script>
+function uploadAvatar() {
+  var form = document.getElementById('profileForm');
+  var avatarInput = document.getElementById('avatarInput');
+  var loadingMessage = document.getElementById('loadingMessage');
+  var successMessage = document.getElementById('successMessage');
 
+  loadingMessage.style.display = 'block';
+
+  var formData = new FormData(form);
+
+  fetch(form.action, {
+    method: form.method,
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    loadingMessage.style.display = 'none';
+
+    if (data.success) {
+      successMessage.style.display = 'block';
+      setTimeout(function() {
+        successMessage.style.display = 'none';
+        location.reload();
+      }, 1000);  // Display success message for 1 seconds
+    } else {
+      alert('Error uploading file. Please try again.');
+    }
+  })
+  .catch(error => {
+    loadingMessage.style.display = 'none';
+    alert('Error uploading file. Please try again.');
+    console.error('Error:', error);
+  });
+}
+</script>
 {% endblock content %}
