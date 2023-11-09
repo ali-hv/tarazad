@@ -84,7 +84,9 @@ def change_info(request):
 
             user.save()
 
-        return JsonResponse({'success': True})
+            return JsonResponse({'success': True})
+
+        return redirect('dashboard:profile')
 
     raise Http404
 
