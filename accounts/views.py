@@ -1,5 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.http import Http404, JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UserLoginForm, UserRegisterForm
 from .scripts.translate_errors import to_persian
 
@@ -66,4 +68,23 @@ class ChangePassword(PasswordChangeView):
         form.error_messages = errors
         messages.error(self.request, 'تغییر رمز عبور با خطا مواجه شد')
         return super().form_invalid(form)
+
+
+def change_info(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            user = request.user
+
+            user.first_name = request.POST.get('first_name', '')
+            user.last_name = request.POST.get('last_name', '')
+
+            if 'avatar' in request.FILES:
+                avatar = request.FILES['avatar']
+                user.avatar = avatar
+
+            user.save()
+
+        return JsonResponse({'success': True})
+
+    raise Http404
 
