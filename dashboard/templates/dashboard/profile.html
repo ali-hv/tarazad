@@ -1,6 +1,7 @@
 {% extends 'dashboard/base.html' %}
+{% load static %}
 
-{% block title %}ترازاد | پروفایل{% endblock %}
+{% block title %}داشبورد | پروفایل{% endblock %}
 
 {% block content %}
 
@@ -30,7 +31,11 @@
                 </header>
                 <div class="card-content">
                 <div class="is-user-avatar image has-max-width is-aligned-center">
-                    <img src="{{ user.avatar.url }}" alt="{{ user.get_full_name }}">
+                    {% if user.avatar %}
+                        <img src="{{ user.avatar.url }}" alt="{{ user.get_full_name }}">
+                    {% else %}
+                        <img src="{% static 'home/images/icons/default-avatar.png' %}" alt="{{ user.get_full_name }}">
+                    {% endif %}
                 </div>
                 <hr>
                 <div class="field">
