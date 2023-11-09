@@ -1,0 +1,194 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}ترازاد | پروفایل{% endblock %}
+
+{% block content %}
+
+<section class="hero is-hero-bar">
+    <div class="hero-body">
+        <div class="level">
+        <div class="level-left">
+            <div class="level-item"><h1 class="title">
+            پروفایل
+            </h1></div>
+        </div>
+        <div class="level-right" style="display: none;">
+            <div class="level-item"></div>
+        </div>
+        </div>
+    </div>
+</section>
+<section class="section is-main-section">
+    <div class="tile is-ancestor">
+        <div class="tile is-parent">
+            <div class="card tile is-child">
+                <header class="card-header">
+                <p class="card-header-title">
+                    <span class="icon"><i class="mdi mdi-account default"></i></span>
+                    پروفایل
+                </p>
+                </header>
+                <div class="card-content">
+                <div class="is-user-avatar image has-max-width is-aligned-center">
+                    <img src="{{ user.avatar.url }}" alt="{{ user.get_full_name }}">
+                </div>
+                <hr>
+                <div class="field">
+                    <label class="label">نام</label>
+                    <div class="control is-clearfix">
+                        <p>{{ user.first_name }}</p>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">نام خانوادگی</label>
+                    <div class="control is-clearfix">
+                        <p>{{ user.last_name }}</p>
+                    </div>
+                    </div>
+                <hr>
+                <div class="field">
+                    <label class="label">ایمیل</label>
+                    <div class="control is-clearfix">
+                    <p>{{ user.email }}</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tile is-parent">
+            <div class="card tile is-child">
+                <header class="card-header">
+                <p class="card-header-title">
+                    <span class="icon"><i class="mdi mdi-account-circle default"></i></span>
+                    ویرایش پروفایل
+                </p>
+                </header>
+                <div class="card-content">
+                <form method="post" action="#">
+                    <div class="field is-horizontal">
+                    <div class="field-label is-normal"><label class="label">آواتار</label></div>
+                    <div class="field-body">
+                        <div class="field">
+                        <div class="field file">
+                            <label class="upload control">
+                            <a class="button is-primary">
+                                <span class="icon"><i class="mdi mdi-upload default"></i></span>
+                                <span>&nbsp;&nbsp;انتخاب فایل</span>
+                            </a>
+                            <input type="file">
+                            </label>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <hr>
+                    <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">نام</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                        <div class="control">
+                            <input type="text" autocomplete="on" name="name" value="{{ user.first_name }}" class="input" required>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">نام خانوادگی</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                        <div class="control">
+                            <input type="text" autocomplete="on" name="name" value="{{ user.last_name }}" class="input" required>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <hr>
+                    <div class="field is-horizontal">
+                    <div class="field-label is-normal"></div>
+                    <div class="field-body">
+                        <div class="field">
+                        <div class="control">
+                            <button type="submit" class="button is-primary">
+                            ثبت
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <header class="card-header">
+        <p class="card-header-title">
+            <span class="icon"><i class="mdi mdi-lock default"></i></span>
+            تغییر رمز عبور
+        </p>
+        </header>
+        <div class="card-content">
+        <form method="post" action="#">
+            <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">رمز عبور فعلی</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                <div class="control">
+                    <input type="password" name="password_current" autocomplete="current-password" class="input" required>
+                </div>
+                <p class="help">رمز عبور فعلی خود را وارد کنید</p></div>
+            </div>
+            </div>
+            <hr>
+            <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">رمز عبور جدید</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                <div class="control">
+                    <input type="password" autocomplete="new-password" name="password" class="input" required>
+                </div>
+                <p class="help">رمز عبور جدید خود را وارد کنید</p>
+                </div>
+            </div>
+            </div>
+            <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">تایید رمز عبور</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                <div class="control">
+                    <input type="password" autocomplete="new-password" name="password_confirmation" class="input" required>
+                </div>
+                <p class="help">رمز عبور جدید خود را دوباره وارد کنید</p>
+                </div>
+            </div>
+            </div>
+            <hr>
+            <div class="field is-horizontal">
+            <div class="field-label is-normal"></div>
+            <div class="field-body">
+                <div class="field">
+                <div class="control">
+                    <button type="submit" class="button is-primary">
+                    ثبت
+                    </button>
+                </div>
+                </div>
+            </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
