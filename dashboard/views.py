@@ -11,6 +11,11 @@ def dashboard(request):
     raise Http404
 
 
+def profile(request):
+    if request.user.is_authenticated:
+        return render(request, 'dashboard/profile.html')
+
+
 def book_pages(request, book_id):
     if request.user.is_authenticated:
         pages = Page.objects.filter(translator=request.user, book_id=book_id)
