@@ -14,6 +14,7 @@ def dashboard(request):
 def profile(request):
     if request.user.is_authenticated:
         return render(request, 'dashboard/profile.html')
+    raise Http404
 
 
 def book_pages(request, book_id):
@@ -32,3 +33,4 @@ def translate_page(request, page_id):
 
         context = {'page': page}
         return render(request, 'dashboard/translate_page.html', context=context)
+    raise Http404
