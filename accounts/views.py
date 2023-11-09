@@ -44,3 +44,26 @@ def register_page(request):
 def logout_user(request):
     logout(request)
     return redirect('home:home_page')
+
+
+# views.py
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
+from django.contrib import messages
+
+
+class ChangePassword(PasswordChangeView):
+    template_name = 'dashboard/profile.html'  # Customize this with your template
+    success_url = reverse_lazy('dashboard:profile')  # Redirect to the user's profile page after a successful password change
+
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, 'رمز عبور شما با موفقیت تغییر کرد !')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        errors = to_persian(form)
+        form.error_messages = errors
+        messages.error(self.request, 'تغییر رمز عبور با خطا مواجه شد')
+        return super().form_invalid(form)
+
