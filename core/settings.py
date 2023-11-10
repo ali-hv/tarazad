@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "home",
     "books",
     "dashboard",
+    "django_cleanup.apps.CleanupConfig",
 ]
 
 MIDDLEWARE = [
