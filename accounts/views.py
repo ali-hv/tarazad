@@ -84,3 +84,7 @@ def change_info(request):
         return JsonResponse({'success': True})
 
     return redirect('dashboard:profile')
+
+
+def not_verified(request, kind):
+    return render(request, 'accounts/not_verified.html', {'kind': kind})
