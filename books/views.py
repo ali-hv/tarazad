@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import Http404
+
+from decorators import email_verified_required, identity_verified_required
 from .models import Book, Page
 
 
@@ -10,6 +12,8 @@ def books_list(request):
     return render(request, 'books/books_list.html', {'books': books})
 
 
+@identity_verified_required
+@email_verified_required
 @login_required
 def add_translator(request, book_id):
     book = get_object_or_404(Book, id=book_id)
