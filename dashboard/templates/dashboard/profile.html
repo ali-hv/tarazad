@@ -54,7 +54,22 @@
                 <div class="field">
                     <label class="label">ایمیل</label>
                     <div class="control is-clearfix">
-                    <p>{{ user.email }}</p>
+                    {% if user.identity_verified %}
+                        <span>{{ user.email }} <i class="mdi mdi-check"></i></span>
+                    {% else %}
+                        <span>{{ user.email }} <i class="mdi mdi-clock-outline"></i></span>
+                    {% endif %}
+                    </div>
+                </div>
+                <hr>
+                <div class="field">
+                    <label class="label">وضعیت هویت</label>
+                    <div class="control is-clearfix">
+                        {% if user.identity_verified %}
+                            <span>تایید شده <i class="mdi mdi-check"></i></span>
+                        {% else %}
+                            <span>در حال بررسی <i class="mdi mdi-clock-outline"></i></span>
+                        {% endif %}
                     </div>
                 </div>
                 </div>
