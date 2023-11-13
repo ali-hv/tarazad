@@ -87,5 +87,5 @@ def change_info(request):
     return redirect('dashboard:profile')
 
 
-def not_verified(request, kind):
-    return render(request, 'accounts/not_verified.html', {'kind': kind})
+def identity_not_verified(request):
+    return render(request, 'accounts/identity_not_verified.html')
