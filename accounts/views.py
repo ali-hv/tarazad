@@ -1,3 +1,4 @@
+from verify_email.email_handler import send_verification_email
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
@@ -35,8 +36,8 @@ def register_page(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
+            inactive_user = send_verification_email(request, form)
+            messages.success(request, "لینک تایید به ایمیل شما ارسال شد. لطفا به ایمیل خود مراجعه و روی لینک کلیک کنید تا اکانت شما فعال شود")
             return redirect('home:home_page')
     else:
         form = UserRegisterForm()
