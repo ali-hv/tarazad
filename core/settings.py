@@ -151,3 +151,10 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = "YOUR_USERNAME"
 EMAIL_HOST_PASSWORD = "YOUR_PASSWORD"
 EMAIL_USE_TLS = True
+
+# Verify Email Configuration
+HTML_MESSAGE_TEMPLATE = "accounts/email/verification_message_template.html"
+VERIFICATION_SUCCESS_TEMPLATE = "accounts/email/verification_successful.html"
+VERIFICATION_FAILED_TEMPLATE = "accounts/email/verification_failed.html"
+LINK_EXPIRED_TEMPLATE = "accounts/email/verification_link_expired.html"
+SUBJECT = "ترازاد | تایید ایمیل"
