@@ -36,13 +36,14 @@ class UserRegisterForm(forms.Form):
         validate_password(password)
         return password
 
-    def save(self):
+    def save(self, commit=True):
         User = get_user_model()
         user = User.objects.create_user(
             username=self.cleaned_data['username'],
             password=self.cleaned_data['password1'],
             phone_number=self.cleaned_data['phone_number'],
             email=self.cleaned_data['email'],
+            is_active=not commit  # Set user as inactive if commit is False
         )
         return user
 
