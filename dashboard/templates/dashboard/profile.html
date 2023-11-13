@@ -54,11 +54,7 @@
                 <div class="field">
                     <label class="label">ایمیل</label>
                     <div class="control is-clearfix">
-                        {% if user.email_verified %}
-                            <span>{{ user.email }} <i class="mdi mdi-check"></i></span>
-                        {% else %}
-                            <span>{{ user.email }} <i class="mdi mdi-clock-outline"></i></span>
-                        {% endif %}
+                        <span>{{ user.email }} <i class="mdi mdi-check"></i></span>
                     </div>
                 </div>
                 <hr>
