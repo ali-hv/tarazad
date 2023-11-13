@@ -9,6 +9,6 @@ def identity_verified_required(view_func):
         user = request.user
         if user.is_authenticated and not user.identity_verified:
             # Redirect to a page indicating that identity is not verified
-            return redirect(reverse('accounts:not_verified', args=['identity']))
+            return redirect(reverse('accounts:identity_not_verified'))
         return view_func(request, *args, **kwargs)
     return wrapper
