@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = "accounts:login"
 
 # Application definition
 
@@ -142,3 +143,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Email Configuration
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_HOST = "smtp.c1.liara.email"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "YOUR_USERNAME"
+EMAIL_HOST_PASSWORD = "YOUR_PASSWORD"
+EMAIL_USE_TLS = True
