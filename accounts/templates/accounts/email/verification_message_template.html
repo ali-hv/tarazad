@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+    <title>تایید آدرس ایمیل</title>
+
+    <style>
+        .format-font {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .my-container {
+            margin: 10px;
+            padding: 10px;
+            padding-top: 0px;
+            justify-content: center;
+            border-radius: 5px;
+            border: 1px solid rgb(204, 203, 203);
+        }
+
+        .my-button {
+            padding: 10px;
+            padding-left: 35px;
+            padding-right: 35px;
+            background-color: rgb(110, 3, 211);
+            color: white;
+            border-radius: 25px;
+            transition-duration: 500ms;
+            text-decoration: none;
+
+        }
+        .my-button:hover {
+            color: rgb(110, 3, 211);
+            background-color: white;
+            border-radius: 0px;
+            border: 1px solid rgb(110, 3, 211);
+            transition-duration: 200ms;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="my-container">
+
+        <div style="background-color: rgb(110, 3, 211); border-radius: 15px;">
+            <h1 class="format-font" style="text-align: center; padding: 2px; color:white;">
+                فعال سازی حساب کاربری
+            </h1>
+        </div>
+
+        <h2 class="format-font" style="text-align: center;">تایید ایمیل</h2> <hr style="background-color:  rgb(110, 3, 211); width:100px">
+
+        <div class="format-font" style="margin-top: 20px; line-height: 1.5;">
+            <p style="text-align: center; font-weight: bold;">سلام</p>
+            شما این ایمیل را دریافت کردید چون در سایت ترازاد حساب کاربری ساختید.
+            لطفا برای تایید ایمیل خود، روی لینک زیر کلیک کنید. اگر شما حساب نساختید،
+            این ایمیل را نادیده بگیرید
+        </div>
+
+        <p class="format-font" style="text-align: center; margin-top: 50px;">
+           روی لینک زیر کلیک کنید :
+            <hr style="background-color:  rgb(110, 3, 211); width:50px">
+            <div class="format-font" style="text-align: center; margin-top: 30px;" >
+                <a href="{{link}}" class="my-button" >تایید ایمیل</a>
+            </div>
+
+        </p>
+
+        <p class="format-font" style="margin-top: 50px;">
+           <b> بعد از تایید ایمیل، می توانید وارد حساب کاربری خود شوید !</b>
+        </p>
+
+        <p class="format-font" style="line-height: 1.5;">
+            <b>ممنون بابت عضویت! <br> لطفا به این ایمیل ریپلای نکنید.</b>
+        </p>
+
+    </div>
+
+</body>
+</html>
