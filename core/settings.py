@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "jalali_date",
+    "verify_email.apps.VerifyEmailConfig",
 
     "home",
     "books",
