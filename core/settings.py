@@ -161,5 +161,6 @@ LINK_EXPIRED_TEMPLATE = "accounts/email/verification_link_expired.html"
 SUBJECT = "ترازاد | تایید ایمیل"
 
 # Google Recaptcha Configuration
-RECAPTCHA_PUBLIC_KEY = "6LfD2ZYoAAAAAO-GvRIzwop75zE8_Lnqut5gCIsz"
-RECAPTCHA_PRIVATE_KEY = "6LfD2ZYoAAAAAIPKyAQk21-4tqQ7FTauQQVDP0ph"
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+RECAPTCHA_PUBLIC_KEY = "6LdGIw8pAAAAABb5Yl7Mz7lV_I0eo-0P604Ags67"
+RECAPTCHA_PRIVATE_KEY = "6LdGIw8pAAAAAPQo5MIMxeYFKiHQw1xQoo48D4Jz"
