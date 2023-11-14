@@ -158,3 +158,7 @@ VERIFICATION_SUCCESS_TEMPLATE = "accounts/email/verification_successful.html"
 VERIFICATION_FAILED_TEMPLATE = "accounts/email/verification_failed.html"
 LINK_EXPIRED_TEMPLATE = "accounts/email/verification_link_expired.html"
 SUBJECT = "ترازاد | تایید ایمیل"
+
+# Google Recaptcha Configuration
+RECAPTCHA_PUBLIC_KEY = "6LfD2ZYoAAAAAO-GvRIzwop75zE8_Lnqut5gCIsz"
+RECAPTCHA_PRIVATE_KEY = "6LfD2ZYoAAAAAIPKyAQk21-4tqQ7FTauQQVDP0ph"
