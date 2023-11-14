@@ -1,5 +1,6 @@
 from datetime import timedelta
 
+from django.core.validators import MaxValueValidator
 from django.db import models
 from django.contrib import admin
 from core.models import TimeStampedModel
@@ -38,6 +39,14 @@ class Book(TimeStampedModel):
     status = models.CharField(max_length=11, choices=STATUS, verbose_name="Book's Status")
     translators = models.ManyToManyField(User, blank=True, verbose_name="Book's Translators",
                                          related_name="book_translators")
+
+    def can_accept_new_translators(self):
+        number_of_translators = self.translators.count()
+        pages_number = self.pages_number
+
+        if number_of_translators < pages_number:
+            return True
+        return False
 
     def __str__(self):
         return self.name
@@ -78,3 +87,8 @@ class Page(models.Model):
     is_reviewed = models.BooleanField(default=False)
     translator = models.ForeignKey(User, on_delete=models.PROTECT, related_name="page_translator",
                                    verbose_name="Page's Translator")
+    translation_accuracy = models.PositiveIntegerField(
+        blank=True, null=True,
+        verbose_name="Translation Accuracy",
+        validators=[MaxValueValidator(10)]
+    )
