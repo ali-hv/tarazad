@@ -33,7 +33,20 @@
             {% endif %}
 
             {% if book.status == 'translated' %}
-                <a href="{{ book.translated_pdf_file.url }}"><button type="button" id="download" class="btn btn-primary btn-md">دانلود</button></a>
+                <div class="download-buttons" id="download-buttons" style="display: flex; justify-content: space-between;">
+                {% if book.translated_pdf_file %}
+                    <a href="{{ book.translated_pdf_file.url }}" style="display: inline-block;">
+                        <button style="padding: 1px 10px 10px 10px; font-size: 19px" type="button" id="download" class="btn btn-primary btn-md full-width-button">دانلود PDF</button>
+                    </a>
+                    <br>
+                {% endif %}
+
+                {% if book.translated_md_file %}
+                    <a href="{{ book.translated_md_file.url }}" style="display: inline-block;">
+                        <button style="padding: 1px 10px 10px 10px; font-size: 19px" type="button" id="download" class="btn btn-primary btn-md full-width-button">دانلود Markdown</button>
+                    </a>
+                {% endif %}
+                </div>
             {% elif book.status == 'in-progress' %}
                 <button type="button" id="in-progress" class="btn btn-primary btn-md">درحال ترجمه</button>
             {% else %}
@@ -51,5 +64,14 @@
       </div>
     {% endfor %}
 </div>
+
+<script>
+    // JavaScript to adjust button width
+    var buttons = document.getElementById('download-buttons').querySelectorAll('.full-width-button');
+
+    if (buttons.length === 1) {
+        buttons[0].style.width = '160%';
+    }
+</script>
 
 {% endblock content %}
