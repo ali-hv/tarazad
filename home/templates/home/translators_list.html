@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<div class="translators-list-body">
+    <div class="translators-list">
+        <table class="translators-table">
+            <thead>
+                <tr>
+                    <th>رتبه</th>
+                    <th>آواتار</th>
+                    <th>نام</th>
+                    <th>مشارکت در کتاب ها</th>
+                    <th>صفحات ترجمه شده</th>
+                    <th>دقت در ترجمه %</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><img class="row-avatar" src="{{ user.get_avatar_url }}" alt="Avatar"></td>
+                        <td>{{ user.get_full_name }}</td>
+                        <td>{{ user.get_number_of_participated_books }}</td>
+                        <td>{{ user.get_number_of_translated_pages }}</td>
+                        <td>{{ user.get_average_translation_accuracy }}%</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}
