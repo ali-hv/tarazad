@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
+    "captcha",
     "jalali_date",
     "verify_email.apps.VerifyEmailConfig",
 
