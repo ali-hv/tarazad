@@ -2688,3 +2688,63 @@ footer .footer-bottom hr {
     content: "\f08b";
   }
 /* END login register button */
+
+/* Translators List */
+.translators-list-body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.translators-list {
+    width: 80%;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.translators-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.translators-table th, .translators-table td {
+    padding: 12px;
+    text-align: right;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.translators-table th {
+    background-color: #8058fd;
+    color: #fff;
+}
+
+.translators-table td {
+    vertical-align: middle;
+}
+
+.row-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: -7px;
+}
+
+@media screen and (max-width: 600px) {
+    .translators-table th, .translators-table td {
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    .row-avatar {
+      width: 30px;
+      height: 30px;
+    }
+}
+/* End Translators List */
