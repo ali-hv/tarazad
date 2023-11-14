@@ -5,7 +5,7 @@ from django.contrib.auth.views import PasswordChangeView
 from .forms import UserLoginForm, UserRegisterForm
 from .scripts.translate_errors import to_persian
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from django.urls import reverse_lazy
 from django.contrib import messages
 
@@ -33,6 +33,9 @@ def login_page(request):
 
 
 def register_page(request):
+    if request.user.is_authenticated:
+        return redirect('home:home_page')
+
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
