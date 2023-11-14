@@ -31,11 +31,7 @@
                 </header>
                 <div class="card-content">
                 <div class="is-user-avatar image has-max-width is-aligned-center" style="height: 100px">
-                    {% if user.avatar %}
-                        <img src="{{ user.avatar.url }}" alt="{{ user.get_full_name }}" style="border-radius: 50%; height: 100%;">
-                    {% else %}
-                        <img src="{% static 'home/images/icons/default-avatar.png' %}" alt="{{ user.get_full_name }}">
-                    {% endif %}
+                    <img src="{{ user.get_avatar_url }}" alt="{{ user.get_full_name }}" style="border-radius: 50%; height: 100%;">
                 </div>
                 <hr>
                 <div class="field">
