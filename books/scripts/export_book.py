@@ -11,7 +11,7 @@ def export_book(book):
     for i in pages:
         text += f'{i.translated_content}\n'
 
-    file_name = f'{book.name}.md'
+    file_name = f'media/books/translated/tmp/{book.name}.md'
 
     with open(file_name, 'w') as f:
         f.write(text)
