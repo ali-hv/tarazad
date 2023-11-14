@@ -7,5 +7,7 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ['username', 'get_full_name', 'identity_verified', ]
 
     def save_model(self, request, obj, form, change):
-        obj.set_password(obj.password)
+        # Check if the password field has changed
+        if 'password' in form.changed_data:
+            obj.set_password(form.cleaned_data['password'])
         super().save_model(request, obj, form, change)
