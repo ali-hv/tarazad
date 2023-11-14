@@ -1,6 +1,8 @@
 from django import forms
+from captcha.fields import ReCaptchaField
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import PasswordChangeForm
+from captcha.widgets import ReCaptchaV2Checkbox
 from django.contrib.auth.password_validation import validate_password
 
 
@@ -9,6 +11,7 @@ class UserLoginForm(forms.Form):
         attrs={'class': 'form-control', 'placeholder': 'نام کاربری'}))
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'رمز عبور'}))
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
 
 
 class UserRegisterForm(forms.Form):
@@ -22,6 +25,7 @@ class UserRegisterForm(forms.Form):
         attrs={'class': 'form-control', 'placeholder': 'شماره همراه'}))
     email = forms.EmailField(widget=forms.EmailInput(
         attrs={'class': 'form-control', 'placeholder': 'ایمیل'}))
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
 
     def clean(self):
         cleaned_data = super().clean()
