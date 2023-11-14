@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from accounts.forms import CustomPasswordChangeForm
-from books.models import Book, Page
+from books.models import Book, Page, InProgressBook
 from django.http import Http404
 
 
@@ -30,6 +30,7 @@ def translate_page(request, page_id):
     page = get_object_or_404(Page, id=page_id)
     if page.translator != request.user or page.is_translated:
         raise Http404
+    extrac_notes = get_object_or_404(InProgressBook, book=page.book).extra_notes
 
-    context = {'page': page}
+    context = {'page': page, 'extra_notes': extrac_notes}
     return render(request, 'dashboard/translate_page.html', context=context)
