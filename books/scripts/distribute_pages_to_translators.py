@@ -1,5 +1,6 @@
-import PyPDF2
 from books.models import InProgressBook, Page
+from .edit import remove_page_top_section
+import PyPDF2
 
 
 def distribute(instance):
@@ -27,6 +28,7 @@ def distribute(instance):
 
         for page in range(start_page, start_page + pages_for_translator):
             page_text = pdf_reader.pages[page - 1].extract_text()
+            page_text = remove_page_top_section(page_text)
             page_instance = Page(book=instance, page=page, original_content=page_text,
                                  translator=translator)
             page_instance.save()
