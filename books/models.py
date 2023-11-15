@@ -90,5 +90,5 @@ class Page(models.Model):
     translation_accuracy = models.PositiveIntegerField(
         blank=True, null=True,
         verbose_name="Translation Accuracy",
-        validators=[MaxValueValidator(10)]
+        validators=[MaxValueValidator(100)]
     )
