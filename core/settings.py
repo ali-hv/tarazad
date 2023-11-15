@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "home",
     "books",
     "dashboard",
+    "translators",
     "django_cleanup.apps.CleanupConfig",
 ]
 
