@@ -1,5 +1,6 @@
-from django.contrib import admin
 from books.models import Book, InProgressBook, Page
+from django.utils.translation import ngettext
+from django.contrib import admin, messages
 
 
 @admin.register(Book)
@@ -19,3 +20,14 @@ class PageAdmin(admin.ModelAdmin):
     fields = ('book', 'page', 'original_content', 'translated_content', 'is_translated',
               'is_reviewed', 'translator', 'translation_accuracy', )
     list_filter = ['book__name', 'is_translated', 'is_reviewed', ]
+    actions = ['make_reviewed']
+
+    @admin.action(description='Mark selected pages as reviewed')
+    def make_reviewed(self, request, queryset):
+        updated = queryset.update(is_reviewed=True)
+        message = f"{updated} page{(updated - 1) * 's'} was successfully marked as reviewed."
+        self.message_user(request,
+                          ngettext(
+                              message, message, updated
+                          ),
+                          messages.SUCCESS)
