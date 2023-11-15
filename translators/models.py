@@ -1,6 +1,5 @@
 from django.core.validators import MaxValueValidator
 from core.settings import AUTH_USER_MODEL
-from books.models import Book, Page
 from django.db import models
 
 User = AUTH_USER_MODEL
