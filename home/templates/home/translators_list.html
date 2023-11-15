@@ -18,14 +18,14 @@
                 </tr>
             </thead>
             <tbody>
-                {% for user in users %}
+                {% for translator in translators %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td><img class="row-avatar" src="{{ user.get_avatar_url }}" alt="Avatar"></td>
-                        <td>{{ user.get_full_name }}</td>
-                        <td>{{ user.get_number_of_participated_books }}</td>
-                        <td>{{ user.get_number_of_translated_pages }}</td>
-                        <td>{{ user.get_average_translation_accuracy }}%</td>
+                        <td><img class="row-avatar" src="{{ translator.user.get_avatar_url }}" alt="Avatar"></td>
+                        <td>{{ translator.user.get_full_name }}</td>
+                        <td>{{ translator.books_participated }}</td>
+                        <td>{{ translator.pages_translated }}</td>
+                        <td>{{ translator.translation_accuracy }}%</td>
                     </tr>
                 {% endfor %}
             </tbody>
