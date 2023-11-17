@@ -11,18 +11,17 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+env = os.environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
+# It will automatically change when pushing to the server
 SECRET_KEY = "django-insecure-ha9-+o%u5c%721*3fntur6t2e&r46jzl*_a8bm^&99@r!(f=1r"
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# It will automatically change when pushing to the server
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -148,11 +147,21 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Email Configuration
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-EMAIL_HOST = "smtp.c1.liara.email"
+
+if "EMAIL_HOST" in env:
+    EMAIL_HOST = env["EMAIL_HOST"]
+
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "YOUR_USERNAME"
-EMAIL_HOST_PASSWORD = "YOUR_PASSWORD"
-EMAIL_USE_TLS = True
+
+if "EMAIL_HOST_USER" in env:
+    EMAIL_HOST_USER = env["EMAIL_HOST_USER"]
+
+if "EMAIL_HOST_PASSWORD" in env:
+    EMAIL_HOST_PASSWORD = env["EMAIL_HOST_PASSWORD"]
+
+if "EMAIL_USE_TLS" in env:
+    EMAIL_USE_TLS = env["EMAIL_USE_TLS"].lower() in ('true', '1')
+
 
 # Verify Email Configuration
 HTML_MESSAGE_TEMPLATE = "accounts/email/verification_message_template.html"
@@ -163,5 +172,8 @@ SUBJECT = "ترازاد | تایید ایمیل"
 
 # Google Recaptcha Configuration
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
-RECAPTCHA_PUBLIC_KEY = "6LdGIw8pAAAAABb5Yl7Mz7lV_I0eo-0P604Ags67"
-RECAPTCHA_PRIVATE_KEY = "6LdGIw8pAAAAAPQo5MIMxeYFKiHQw1xQoo48D4Jz"
+if "RECAPTCHA_PUBLIC_KEY" in env:
+    RECAPTCHA_PUBLIC_KEY = env["RECAPTCHA_PUBLIC_KEY"]
+
+if "RECAPTCHA_PRIVATE_KEY" in env:
+    RECAPTCHA_PRIVATE_KEY = env["RECAPTCHA_PRIVATE_KEY"]
