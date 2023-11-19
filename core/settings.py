@@ -162,6 +162,8 @@ if "EMAIL_HOST_PASSWORD" in env:
 if "EMAIL_USE_TLS" in env:
     EMAIL_USE_TLS = env["EMAIL_USE_TLS"].lower() in ('true', '1')
 
+if "DEFAULT_FROM_EMAIL" in env:
+    DEFAULT_FROM_EMAIL = env["DEFAULT_FROM_EMAIL"]
 
 # Verify Email Configuration
 HTML_MESSAGE_TEMPLATE = "accounts/email/verification_message_template.html"
