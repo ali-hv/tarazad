@@ -3,6 +3,7 @@ function uploadAvatar() {
   var avatarInput = document.getElementById('avatarInput');
   var loadingMessage = document.getElementById('loadingMessage');
   var successMessage = document.getElementById('successMessage');
+  var errorMessage = document.getElementById('errorMessage'); // Add this line
 
   loadingMessage.style.display = 'block';
 
@@ -21,7 +22,9 @@ function uploadAvatar() {
       setTimeout(function() {
         successMessage.style.display = 'none';
         location.reload();
-      }, 1000);  // Display success message for 1 seconds
+      }, 1000);  // Display success message for 1 second
+    } else if (data.error) {  // Add this condition
+      alert(data.error);
     } else {
       alert('Error uploading file. Please try again.');
     }
