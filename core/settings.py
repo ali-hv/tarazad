@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "captcha",
+    'storages',
     "jalali_date",
     "verify_email.apps.VerifyEmailConfig",
 
@@ -179,3 +180,10 @@ if "RECAPTCHA_PUBLIC_KEY" in env:
 
 if "RECAPTCHA_PRIVATE_KEY" in env:
     RECAPTCHA_PRIVATE_KEY = env["RECAPTCHA_PRIVATE_KEY"]
+
+# s3 configurations
+STORAGES = {"default": {"BACKEND": "storages.backends.s3boto3.S3Boto3Storage"}}
+AWS_S3_ENDPOINT_URL = os.getenv("LIARA_ENDPOINT")
+AWS_S3_ACCESS_KEY_ID = os.getenv("LIARA_ACCESS_KEY")
+AWS_S3_SECRET_ACCESS_KEY = os.getenv("LIARA_SECRET_KEY")
+AWS_STORAGE_BUCKET_NAME = os.getenv("LIARA_BUCKET_NAME")
