@@ -5,9 +5,10 @@ from django.contrib.auth.views import PasswordChangeView
 from .forms import UserLoginForm, UserRegisterForm
 from .scripts.translate_errors import to_persian
 from django.shortcuts import render, redirect
-from django.http import JsonResponse, Http404
+from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.contrib import messages
+import threading
 
 
 def login_page(request):
@@ -39,7 +40,9 @@ def register_page(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            inactive_user = send_verification_email(request, form)
+            thread = threading.Thread(target=send_verification_email, args=(request, form))
+            thread.start()
+            
             messages.success(request, "لینک تایید به ایمیل شما ارسال شد. لطفا به ایمیل خود مراجعه و روی لینک کلیک کنید تا اکانت شما فعال شود")
             return redirect('home:home_page')
     else:
