@@ -2,13 +2,16 @@ from verify_email.email_handler import send_verification_email
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
-from .forms import UserLoginForm, UserRegisterForm
-from .scripts.translate_errors import to_persian
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.contrib import messages
 import threading
+
+from .scripts.validators import validate_image_size, validate_image_type
+from .forms import UserLoginForm, UserRegisterForm
+from .scripts.translate_errors import to_persian
 
 
 def login_page(request):
@@ -42,7 +45,7 @@ def register_page(request):
         if form.is_valid():
             thread = threading.Thread(target=send_verification_email, args=(request, form))
             thread.start()
-            
+
             messages.success(request, "لینک تایید به ایمیل شما ارسال شد. لطفا به ایمیل خود مراجعه و روی لینک کلیک کنید تا اکانت شما فعال شود")
             return redirect('home:home_page')
     else:
@@ -84,6 +87,13 @@ def change_info(request):
 
         if 'avatar' in request.FILES:
             avatar = request.FILES['avatar']
+
+            try:
+                validate_image_size(avatar)
+                validate_image_type(avatar)
+            except ValidationError as e:
+                return JsonResponse({'error': str(e)})
+
             user.avatar = avatar
 
         user.save()
