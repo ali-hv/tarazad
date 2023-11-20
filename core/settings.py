@@ -11,9 +11,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import dotenv
 import os
 
-env = os.environ
+
+dotenv.load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -82,7 +84,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -113,7 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -124,7 +124,6 @@ TIME_ZONE = "Asia/Tehran"
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -148,23 +147,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Email Configuration
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-
-if "EMAIL_HOST" in env:
-    EMAIL_HOST = env["EMAIL_HOST"]
-
+EMAIL_HOST = os.getenv("EMAIL_HOST")
 EMAIL_PORT = 587
-
-if "EMAIL_HOST_USER" in env:
-    EMAIL_HOST_USER = env["EMAIL_HOST_USER"]
-
-if "EMAIL_HOST_PASSWORD" in env:
-    EMAIL_HOST_PASSWORD = env["EMAIL_HOST_PASSWORD"]
-
-if "EMAIL_USE_TLS" in env:
-    EMAIL_USE_TLS = env["EMAIL_USE_TLS"].lower() in ('true', '1')
-
-if "DEFAULT_FROM_EMAIL" in env:
-    DEFAULT_FROM_EMAIL = env["DEFAULT_FROM_EMAIL"]
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "").lower() in ('true', '1')
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 
 # Verify Email Configuration
 HTML_MESSAGE_TEMPLATE = "accounts/email/verification_message_template.html"
@@ -175,14 +163,20 @@ SUBJECT = "ترازاد | تایید ایمیل"
 
 # Google Recaptcha Configuration
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
-if "RECAPTCHA_PUBLIC_KEY" in env:
-    RECAPTCHA_PUBLIC_KEY = env["RECAPTCHA_PUBLIC_KEY"]
-
-if "RECAPTCHA_PRIVATE_KEY" in env:
-    RECAPTCHA_PRIVATE_KEY = env["RECAPTCHA_PRIVATE_KEY"]
+RECAPTCHA_PUBLIC_KEY = os.getenv("RECAPTCHA_PUBLIC_KEY", "")
+RECAPTCHA_PRIVATE_KEY = os.getenv("RECAPTCHA_PRIVATE_KEY", "")
 
 # s3 configurations
-STORAGES = {"default": {"BACKEND": "storages.backends.s3boto3.S3Boto3Storage"}}
+STORAGES = {
+    "default":
+        {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage"
+        },
+    "staticfiles":
+        {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"
+        },
+}
 AWS_S3_ENDPOINT_URL = os.getenv("LIARA_ENDPOINT")
 AWS_S3_ACCESS_KEY_ID = os.getenv("LIARA_ACCESS_KEY")
 AWS_S3_SECRET_ACCESS_KEY = os.getenv("LIARA_SECRET_KEY")
