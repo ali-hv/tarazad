@@ -1,11 +1,12 @@
+from django.core.files.storage import default_storage
 from books.models import InProgressBook, Page
 from .edit import remove_page_top_section
 import PyPDF2
 
 
 def distribute(instance):
-    pdf_file = open(instance.original_file.path, 'rb')
-    pdf_reader = PyPDF2.PdfReader(pdf_file)
+    with default_storage.open(instance.original_file.name, 'rb') as pdf_file:
+        pdf_reader = PyPDF2.PdfReader(pdf_file)
 
     InProgressBook.objects.create(book=instance)
 
