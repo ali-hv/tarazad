@@ -7,7 +7,8 @@ def to_persian(form):
                       'This password is entirely numeric': 'رمز عبور تنها از اعداد تشکیل شده است. باید شامل اعداد و حروف باشد',
                       'Your old password was entered incorrectly': 'پسورد وارد شده اشتباه است !',
                       ' Please enter it again': 'لطفا دوباره امتحان کنید',
-                      'The password is too similar to the username': 'رمز عبور خیلی شبیه به نام کاربری است !', }
+                      'The password is too similar to the username': 'رمز عبور خیلی شبیه به نام کاربری است !',
+                      'An account with this email address already exists': 'یک حساب با این آدرس ایمیل قبلا در سایت ثبت نام کرده است'}
 
     form_errors = list(form.errors.values())
     form_errors = [''.join(i) for i in form_errors]
