@@ -1,4 +1,6 @@
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
+
 from books.models import Book, Page
 from django.core.files import File
 import os.path
@@ -23,5 +25,6 @@ def export_book(book):
         obj.translated_md_file.save(os.path.basename(file_name), django_file)
 
     obj.status = 'translated'
+    obj.translated_date = timezone.now()
 
     obj.save()
