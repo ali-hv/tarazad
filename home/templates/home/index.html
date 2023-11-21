@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load jalali_tags %}
 {% load static %}
 
 {% block title %}ترازاد | ترجمه آزاد کتاب{% endblock %}
@@ -82,6 +83,77 @@
     <!-- .container end -->
 </section>
 
-{% include 'books/books_list.html' %}
+<!-- books section -->
+<link rel="stylesheet" href="{% static 'books/css/style.css' %}">
+
+<h2 align="right">کتاب ها</h2><br>
+
+<div class="row">
+    {% for book in books %}
+      {% if forloop.counter0|divisibleby:3 and forloop.counter0 > 1 %}
+        </div> <!-- Close the current row -->
+        <div class="row"> <!-- Start a new row -->
+      {% endif %}
+
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <!-- Card image -->
+          <div class="view overlay">
+            <img class="card-img-top" src="{{ book.cover_image.url }}"
+              alt="Card image cap">
+          </div>
+          <!-- Card content -->
+          <div class="card-body">
+            <h4 class="card-title">{{ book.name }}</h4><br><br>
+            {% if book.status == 'translated' %}
+                <small class="book-detail">تعداد مترجمان مشارکت کرده: {{ book.translators.count }}</small><br><br>
+                <small class="book-detail">تاریخ اتمام ترجمه: {{ book.translated_date|to_jalali:'%Y/%m/%d' }}</small><br><br>
+            {% else %}
+                <small class="book-detail">حداقل تعداد مترجمان برای شروع: {{ book.min_translators }}</small><br><br>
+                <small class="book-detail">تعداد مترجمان عضو شده: {{ book.translators.count }}</small><br><br>
+            {% endif %}
+
+            {% if book.status == 'translated' %}
+                <div class="download-buttons" id="download-buttons" style="display: flex; justify-content: space-between;">
+                {% if book.translated_pdf_file %}
+                    <a href="{{ book.translated_pdf_file.url }}" style="display: inline-block;">
+                        <button style="padding: 1px 10px 10px 10px; font-size: 18px" type="button" id="pdf-download" class="btn btn-primary btn-md full-width-button">دانلود PDF</button>
+                    </a>
+                    <br>
+                {% endif %}
+
+                {% if book.translated_md_file %}
+                    <a href="{{ book.translated_md_file.url }}" style="display: inline-block;">
+                        <button style="padding: 1px 10px 10px 10px; font-size: 19px" type="button" id="download" class="btn btn-primary btn-md full-width-button">دانلود Markdown</button>
+                    </a>
+                {% endif %}
+                </div>
+            {% elif book.status == 'in-progress' %}
+                <button type="button" id="in-progress" class="btn btn-primary btn-md">درحال ترجمه</button>
+            {% else %}
+                {% if user in book.translators.all %}
+                    <button type="button" id="translating-date" class="btn btn-primary btn-md">
+                        ترجمه این کتاب در تاریخ {{ book.translating_date|to_jalali:'%Y/%m/%d' }} شروع می شود
+                    </button>
+                {% else %}
+                    <a href="{% url 'books:add_translator' book_id=book.id %}"><button type="button" class="btn btn-primary btn-md">عضویت در مترجمان</button></a>
+                {% endif %}
+            {% endif %}
+          </div>
+          <!-- Card content -->
+        </div>
+      </div>
+    {% endfor %}
+</div>
+
+<script>
+    // JavaScript to adjust button width
+    var buttons = document.getElementById('download-buttons').querySelectorAll('.full-width-button');
+
+    if (buttons.length === 1) {
+        buttons[0].style.width = '160%';
+    }
+</script>
+<!-- END books section -->
 
 {% endblock content %}
