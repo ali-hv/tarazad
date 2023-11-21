@@ -1,9 +1,11 @@
 from translators.models import Translator
 from django.shortcuts import render
+from books.models import Book
 
 
 def home_page(request):
-    return render(request, "home/index.html")
+    books = Book.objects.all()
+    return render(request, "home/index.html", {'books': books})
 
 
 def support(requests):

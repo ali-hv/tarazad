@@ -7,6 +7,8 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'books/css/style.css' %}">
 
+<h2 align="right">کتاب ها</h2><br>
+
 <div class="row">
     {% for book in books %}
       {% if forloop.counter0|divisibleby:3 and forloop.counter0 > 1 %}
