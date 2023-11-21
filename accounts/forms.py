@@ -4,6 +4,10 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import PasswordChangeForm
 from captcha.widgets import ReCaptchaV2Checkbox
 from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+
+from accounts.models import User
 
 
 class UserLoginForm(forms.Form):
@@ -29,11 +33,19 @@ class UserRegisterForm(forms.Form):
 
     def clean(self):
         cleaned_data = super().clean()
-        password = cleaned_data.get("password")
-        confirm_password = cleaned_data.get("confirm_password")
+        password1 = cleaned_data.get("password1")
+        password2 = cleaned_data.get("password2")
 
-        if password and confirm_password and password != confirm_password:
-            raise forms.ValidationError("Passwords do not match")
+        if password1 and password2 and password1 != password2:
+            self.add_error('password1', _("The two password fields didn’t match."))
+
+        username = cleaned_data.get("username")
+        if User.objects.filter(username=username).exists():
+            self.add_error('username', _("A user with that username already exists"))
+
+        email = cleaned_data.get("email")
+        if User.objects.filter(email=email).exists():
+            self.add_error('email', _("An account with this email address already exists"))
 
     def clean_password(self):
         password = self.cleaned_data.get("password")
