@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "captcha",
-    'storages',
     "jalali_date",
     "verify_email.apps.VerifyEmailConfig",
 
@@ -165,19 +164,3 @@ SUBJECT = "ترازاد | تایید ایمیل"
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 RECAPTCHA_PUBLIC_KEY = os.getenv("RECAPTCHA_PUBLIC_KEY", "")
 RECAPTCHA_PRIVATE_KEY = os.getenv("RECAPTCHA_PRIVATE_KEY", "")
-
-# s3 configurations
-STORAGES = {
-    "default":
-        {
-            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage"
-        },
-    "staticfiles":
-        {
-            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"
-        },
-}
-AWS_S3_ENDPOINT_URL = os.getenv("LIARA_ENDPOINT")
-AWS_S3_ACCESS_KEY_ID = os.getenv("LIARA_ACCESS_KEY")
-AWS_S3_SECRET_ACCESS_KEY = os.getenv("LIARA_SECRET_KEY")
-AWS_STORAGE_BUCKET_NAME = os.getenv("LIARA_BUCKET_NAME")
