@@ -1,6 +1,7 @@
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from django.shortcuts import get_object_or_404
+import threading
 
 from books.models import Book, InProgressBook, Page
 from books.scripts.distribute_pages_to_translators import distribute
@@ -16,7 +17,8 @@ def add_book_to_inprogressbooks(sender, instance: Book, **kwargs):
         previous = get_object_or_404(Book, id=instance.id)
         if previous.status != instance.status:
             if instance.status == "in-progress":
-                distribute(instance)
+                thread = threading.Thread(target=distribute, args=[instance])
+                thread.start()
 
             elif instance.status == "translated":
                 for translator in instance.translators.all():
