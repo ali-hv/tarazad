@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
     "captcha",
     "jalali_date",
-    "verify_email.apps.VerifyEmailConfig",
+    # "verify_email.apps.VerifyEmailConfig",
 
     "home",
     "books",
