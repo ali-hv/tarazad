@@ -45,7 +45,10 @@ def register_page(request):
         if form.is_valid():
             # thread = threading.Thread(target=send_verification_email, args=(request, form))
             # thread.start()
-            form.save()
+            inactive_user = form.save(commit=False)
+            inactive_user.is_active = True
+            inactive_user.identity_verified = True
+            inactive_user.save()
 
             messages.success(request, "لینک تایید به ایمیل شما ارسال شد. لطفا به ایمیل خود مراجعه و روی لینک کلیک کنید تا اکانت شما فعال شود(اگر ایمیل را نمی بینید، بخش هرزنامه را چک کنید)")
             return redirect('home:home_page')
